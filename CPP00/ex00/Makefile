@@ -3,14 +3,16 @@ CC						=	c++
 FLAGS					=	-Wall -Wextra -Werror -std=c++98
 RM						=	rm -f
 
+### Directories ###
+SRC_PATH = srcs/
+OBJ_PATH = objs/
 ### All sources ###
-SOURCES		=	megaphone.cpp
-
+SOURCES		=	Megaphone.cpp
 ### All objects ###
 
 SRCS = $(addprefix $(SRC_PATH),$(SOURCES))
-OBJS = $(addprefix $(OBJ_PATH),$(SOURCES:.c=.o))
-DEPS = $(addprefix $(OBJ_PATH),$(SOURCES:.c=.d))
+OBJS = $(addprefix $(OBJ_PATH),$(SOURCES:.cpp=.o))
+DEPS = $(addprefix $(OBJ_PATH),$(SOURCES:.cpp=.d))
 
 ### COLORS ###
 NOC         = \033[0m
@@ -21,13 +23,12 @@ all:	header tmp $(NAME)
 
 tmp:
 	@mkdir -p $(OBJ_PATH)
-	@mkdir -p $(OBJ_PATH) $(SRC_PATH)
 
 $(NAME) : $(OBJS)
-	$(CC) $(FLAGS) -o $@ $^ -l $(PTHREAD_LIB) -o $(NAME)
+	$(CC) $(FLAGS) -o $@ $^ -o $(NAME)
 	@echo "$(GREEN)Project compiled succesfully$(NOC)"
 
-$(OBJ_PATH)%.o: $(SRC_PATH)%.c
+$(OBJ_PATH)%.o: $(SRC_PATH)%.cpp
 	@$(CC) -MMD $(FLAGS) -c -o $@ $<
 	@echo "$(CYAN)Creation of object file -> $(CYAN)$(notdir $@)... $(GREEN)[Done]$(NOC)"
 
@@ -51,14 +52,7 @@ header:
 
 define HEADER_PROJECT
 
-
- ______   __  __     __     __         ______     ______     ______     ______   __  __     ______     ______     ______    
-/\  == \ /\ \_\ \   /\ \   /\ \       /\  __ \   /\  ___\   /\  __ \   /\  == \ /\ \_\ \   /\  ___\   /\  == \   /\  ___\   
-\ \  _-/ \ \  __ \  \ \ \  \ \ \____  \ \ \/\ \  \ \___  \  \ \ \/\ \  \ \  _-/ \ \  __ \  \ \  __\   \ \  __<   \ \___  \  
- \ \_\    \ \_\ \_\  \ \_\  \ \_____\  \ \_____\  \/\_____\  \ \_____\  \ \_\    \ \_\ \_\  \ \_____\  \ \_\ \_\  \/\_____\ 
-  \/_/     \/_/\/_/   \/_/   \/_____/   \/_____/   \/_____/   \/_____/   \/_/     \/_/\/_/   \/_____/   \/_/ /_/   \/_____/ 
-                                                                                                                            
-
+CPP MODULE 00
 
 endef
 export HEADER_PROJECT
