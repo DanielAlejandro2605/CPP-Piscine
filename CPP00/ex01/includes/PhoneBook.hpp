@@ -7,18 +7,20 @@
 class PhoneBook
 {
     private:
-        Contact listContacts[10];
-        unsigned int contactSaved;
+        Contact			listContacts[8];
+        std::string		buffer;
+        int				contactSaved;
     public:
-        std::string buffer;
         PhoneBook(/* args */);
         ~PhoneBook();
-        void appendContactSaved(void);
-        Contact *getListContacts(void);
-        void Prompt(std::string prompt_message);
-        void OpenPhoneBook(void);
-        void App(void);
-        void AddContact(void);
+        void 			appendContactSaved(void);
+		int				getContactSaved(void);
+        Contact			*getListContacts(void);
+        std::string		getPhoneBookBuffer(void);
+        int				Prompt(std::string prompt_message);
+        void			OpenPhoneBook(void);
+        void			App(std::string cmd);
+        void			AddContact(void);
 };
 
 #endif

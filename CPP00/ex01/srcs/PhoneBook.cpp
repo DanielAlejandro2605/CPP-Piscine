@@ -15,45 +15,96 @@ void PhoneBook::appendContactSaved(void)
 	this->contactSaved += 1;
 }
 
-Contact *PhoneBook::getListContacts(void)
+Contact 	*PhoneBook::getListContacts(void)
 {
-    return this->listContacts;
+    return (this->listContacts);
 }
 
-void PhoneBook::Prompt(std::string prompt_message)
+int	PhoneBook::getContactSaved(void)
 {
-    this->buffer.clear();
-    std::cout << prompt_message << ": ";
-	while (this->buffer.empty())
+    return (this->contactSaved);
+}
+
+std::string	PhoneBook::getPhoneBookBuffer(void)
+{
+    return (this->buffer);
+}
+
+int	PhoneBook::Prompt(std::string prompt_message)
+{
+    std::string buffer = PhoneBook::getPhoneBookBuffer();
+
+	buffer.clear();
+	while (buffer.empty())
 	{
-		std::cin >> this->buffer;
-		std::cout << "\n";
+		std::cout << prompt_message << ": ";
+		std::getline(std::cin, buffer);
+		if(std::cin.eof())
+		{
+            buffer.clear();
+			return (1);
+        }
 	}
+	return (0);
 }
 
-void PhoneBook::OpenPhoneBook(void)
+void	PhoneBook::OpenPhoneBook(void)
 {
+    std::string buffer = PhoneBook::getPhoneBookBuffer();
+
 	std::cout << "Welcome to PhoneBook App!\n";
-	PhoneBook::Prompt("Enter your choice");
+    std::cout << "You can ADD and SEARCH your contacts!\n";
+    while (1)
+    {
+        std::cout << "Enter your choice : ";
+        std::getline(std::cin, buffer);
+        if(!std::cin.eof())
+        {
+            if (buffer.compare("EXIT") == 0)
+			{
+				buffer.clear();
+				break ;
+			}
+            PhoneBook::App(buffer);
+        }
+        else
+        {
+            buffer.clear();
+			break ;
+        }
+        buffer.clear();
+    }
 }
 
-void PhoneBook::App(void)
+void PhoneBook::App(std::string cmd)
 {
-    if (this->buffer.compare("ADD") == 0)
-        this->AddContact();
-    else if (this->buffer.compare("SEARCH") == 0)
+    if (cmd.compare("ADD") == 0)
+	{
+		PhoneBook::AddContact();
+	}
+    else if (cmd.compare("SEARCH") == 0)
         std::cout << "Here we search a Contact!\n";
-    else if (this->buffer[0] == 0)
-        std::cout << "\n";
     this->buffer.clear();
 }
 
 void PhoneBook::AddContact(void)
 {
-	int	free_index = this->contactSaved;
-    Contact *arrayContact = this->getListContacts();
-    this->Prompt("\tEnter user first name");
-    arrayContact[free_index].setFirstName(this->buffer);
-    std::cout << arrayContact[free_index].getFirstName();
-	std::system("clear");
+	Contact *arrayContact = PhoneBook::getListContacts();
+	int	free_index = PhoneBook::contactSaved;
+	int ctrl_prompt = 0;
+
+    ctrl_prompt = PhoneBook::Prompt("\tEnter new user first name");
+	if (ctrl_prompt)
+		return ()
+    arrayContact[free_index].setFirstName(PhoneBook::buffer);
+    PhoneBook::Prompt("\tEnter new user last name");
+    arrayContact[free_index].setLastName(PhoneBook::buffer);
+    PhoneBook::Prompt("\tEnter new user nick name");
+    arrayContact[free_index].setNickName(PhoneBook::buffer);
+    PhoneBook::Prompt("\tEnter new user phone number");
+	arrayContact[free_index].setPhoneNumber(PhoneBook::buffer);
+	PhoneBook::Prompt("\tTell me a darkest secret from this new user");
+	arrayContact[free_index].setDarkestSecret(PhoneBook::buffer);
+	arrayContact[free_index].printUserInfo();
+	std::cout << "Here" << "\n";
 }
