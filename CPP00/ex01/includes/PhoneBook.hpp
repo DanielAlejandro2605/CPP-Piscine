@@ -1,8 +1,8 @@
 #ifndef PHONEBOOK
 # define PHONEBOOK
 
-# include <iostream>
-# include <stdlib.h>
+# include <iomanip>
+# include <sstream>
 # include "../includes/Contact.hpp"
 class PhoneBook
 {
@@ -10,6 +10,7 @@ class PhoneBook
         Contact			listContacts[8];
         std::string		buffer;
         int				contactSaved;
+        int             maxContactCapacity;           
     public:
         PhoneBook(/* args */);
         ~PhoneBook();
@@ -17,10 +18,18 @@ class PhoneBook
 		int				getContactSaved(void);
         Contact			*getListContacts(void);
         std::string		getPhoneBookBuffer(void);
-        int				Prompt(std::string prompt_message);
+        void            setPhoneBookBuffer(std::string new_buffer);
+        std::string     numToString(int value);
+        int             stringToNumber(std::string str);
+        // int             handleString(std::string str, int length_max);
+        int             Prompt(std::string prompt_message, int length, int (*f)(std::string, int));
+        int		        getFreeIndexArray(Contact *arrayContact, int *addContactSaved);
+        void            printFieldContact(std::string info_field);
         void			OpenPhoneBook(void);
-        void			App(std::string cmd);
-        void			AddContact(void);
+        int             App(std::string cmd);
+        int             AddContact(void);
+        void            printContactList(void);
+        void            SearchContact(void);
 };
 
 #endif

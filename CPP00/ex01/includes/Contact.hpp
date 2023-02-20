@@ -2,7 +2,7 @@
 # define CONTACT
 
 # include <iostream>
-
+# include <ctime>
 class Contact
 {
     private:
@@ -11,6 +11,7 @@ class Contact
 		std::string	nick_name;
         std::string	phone_number;
 		std::string	darkest_secret;
+        std::time_t timestamps_creation;
     public:
         Contact(void);
         ~Contact();
@@ -25,7 +26,9 @@ class Contact
         std::string getPhoneNumber(void);
         void		setDarkestSecret(std::string darkest_secret_value);
         std::string	getDarkestSecret(void);
-        void		printUserInfo(void);
+        void        setTimeStampsCreation(void);
+        std::time_t getTimeStampsCreation(void);
+        void		printAllUserInfo(void);
 };
 
 #endif

@@ -1,7 +1,5 @@
 #include <iostream>
 
-using namespace std;
-
 class Megaphone
 {
 	private:
@@ -36,19 +34,16 @@ void Megaphone::onSound()
 			j = 0;
 			while (this->phrases[i][j])
 			{
-				if (this->phrases[i][j] >= 97 && this->phrases[i][j] <= 122)
-					cout << (char)(this->phrases[i][j] - 32);
-				else
-					cout << (char)(this->phrases[i][j]);
+				std::cout << (char)std::toupper(this->phrases[i][j]);
 				j++;
 			}
 			i++;
 		}
-		cout << '\n';
+		std::cout << '\n';
 	}
 	else
 	{
-		cout << this->default_phrase << '\n';
+		std::cout << this->default_phrase << '\n';
 	}
 }
 
