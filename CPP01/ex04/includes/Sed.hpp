@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   Sed.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 18:56:33 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/02/20 19:24:22 by dnieto-c         ###   ########.fr       */
+/*   Created: 2023/02/23 19:40:59 by dnieto-c          #+#    #+#             */
+/*   Updated: 2023/02/24 00:41:56 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Zombie.hpp"
+#ifndef SED
+#define SED
 
-Zombie	*zombieHorde(int N, std::string name)
+# include <iostream>
+# include <fstream>
+
+class Sed
 {
-    Zombie  *hordeZombies = new Zombie[N];
-    for (int i = 0; i < N; i++)
-        hordeZombies[i].setZombieName(name);
-    return (hordeZombies);
-}
+	private:
+		std::string		_buffer;
+		char			*_name_file;
+		std::string		_str_to_search;
+		std::string		_str_to_replace;
+		int				length_str_to_search;
+		int				length_str_to_replace;
+	public:
+		Sed(char *argv[]);
+		~Sed();
+		void	replacePatternLine(void);
+		void	sedIsForLosers(void);
+};
+
+#endif

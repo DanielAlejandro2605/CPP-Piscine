@@ -1,4 +1,4 @@
-NAME					=	unnecessary_violence
+NAME					=	sed_is_for_losers
 CC						=	c++
 FLAGS					=	-Wall -Wextra -Werror -std=c++98
 RM						=	rm -f
@@ -8,7 +8,7 @@ SRC_PATH = srcs/
 OBJ_PATH = objs/
 HEADER_PATH = includes/
 ### All sources ###
-SOURCES		=	main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+SOURCES		=	main.cpp Sed.cpp
 ### All objects ###
 
 SRCS = $(addprefix $(SRC_PATH),$(SOURCES))
