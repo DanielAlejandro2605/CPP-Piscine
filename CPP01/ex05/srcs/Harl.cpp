@@ -1,25 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 18:56:42 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/02/20 18:56:42 by dnieto-c         ###   ########.fr       */
+/*   Created: 2023/03/01 16:56:02 by dnieto-c          #+#    #+#             */
+/*   Updated: 2023/03/01 16:56:02 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Zombie.hpp"
+#include "../includes/Harl.hpp"
 
-int main(void)
+Harl::Harl(/* args */)
 {
-	int		amt_zombies = 5;
-	Zombie	*myZombieHorde = zombieHorde(amt_zombies, "Norminette");
+}
 
-	for (int i = 0;i < amt_zombies;i++)
-		myZombieHorde[i].announce();
-
-	delete [] myZombieHorde;
-    return(0);
+Harl::~Harl()
+{
 }

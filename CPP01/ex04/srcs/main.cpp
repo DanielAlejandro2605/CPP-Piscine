@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   zombieHorde.cpp                                    :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 18:56:33 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/02/20 19:24:22 by dnieto-c         ###   ########.fr       */
+/*   Created: 2023/02/23 19:40:32 by dnieto-c          #+#    #+#             */
+/*   Updated: 2023/02/23 20:45:01 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Zombie.hpp"
+#include "../includes/Sed.hpp"
 
-Zombie	*zombieHorde(int N, std::string name)
+int	main(int argc, char *argv[])
 {
-    Zombie  *hordeZombies = new Zombie[N];
-    for (int i = 0; i < N; i++)
-        hordeZombies[i].setZombieName(name);
-    return (hordeZombies);
+	if (argc == 4)
+	{
+		Sed mySed = Sed(argv + 1);
+		mySed.sedIsForLosers();
+	}
+    else 
+    {
+		std::cout << "The sed program must have 2 arguments, no more no less\n";
+    }
 }
