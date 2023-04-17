@@ -12,9 +12,21 @@
 
 #include "../includes/Harl.hpp"
 
-Harl::Harl(void)
+Harl::Harl(const char *arg)
 {
     std::cout << "Executing the constructor of Harl class\n";
+	std::string	harl_levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	int			i;
+	this->filter_level.assign(arg);
+
+	i = 0;
+	while (i < 4)
+	{
+		if (this->filter_level.compare(harl_levels[i]) == 0)
+			break;
+		i++;
+	}
+	this->level = i;
 }
 
 Harl::~Harl()
@@ -42,19 +54,40 @@ void	Harl::error(void)
 	std::cout << "This is unacceptable! I want to speak to the manager now\n";
 }
 
-void    Harl::complain(std::string level)
+void    Harl::complain(int begin_level)
 {
 	void		(Harl::*HarlFunctions[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	std::string	harl_levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	int			i;
 
-	i = 0;
+	i = begin_level;
 	while (i < 4)
 	{
-		if (level.compare(harl_levels[i]) == 0)
-		{
-			(this->*HarlFunctions[i])();
-		}
+		std::cout << "[ " << harl_levels[i] << "]\n";
+		(this->*HarlFunctions[i])();
+		std::cout << "\n";
 		i++;
+	}
+}
+
+void	Harl::harlFilter(void)
+{
+	switch (this->level)
+	{
+		case 0:
+			Harl::complain(0);
+		break;
+		case 1:
+			Harl::complain(1);
+		break;
+		case 2:
+			Harl::complain(2);
+		break;
+		case 3:
+			Harl::complain(3);
+		break;
+	default:
+			std::cout << "[ Probably complaining about insignificant problems ]\n";
+		break;
 	}
 }

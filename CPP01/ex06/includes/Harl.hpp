@@ -17,14 +17,17 @@
 class Harl
 {
     private:
-        void debug(void);
-        void info(void);
-        void warning(void);
-        void error(void);
+        std::string filter_level;
+		int			level;
+        void        debug(void);
+        void        info(void);
+        void        warning(void);
+        void        error(void);
     public:
-        Harl(/* args */);
+        Harl(const char *arg);
         ~Harl();
-        void complain(std::string level);
+        void		complain(int begin_level);
+        void 		harlFilter(void);
 };
 
 

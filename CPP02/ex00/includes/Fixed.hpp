@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 16:55:34 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/03/01 16:55:34 by dnieto-c         ###   ########.fr       */
+/*   Created: 2023/03/23 14:04:04 by dnieto-c          #+#    #+#             */
+/*   Updated: 2023/03/23 14:04:04 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL
-#define HARL
-
 # include <iostream>
-class Harl
+
+class Fixed
 {
     private:
-        void debug(void);
-        void info(void);
-        void warning(void);
-        void error(void);
+		int					fixed_point_number_value;
+		static const int	fractional_bits = 8;
     public:
-        Harl(/* args */);
-        ~Harl();
-        void complain(std::string level);
+        Fixed(void);
+		Fixed(const Fixed &original);
+        ~Fixed();
+		Fixed& operator=(const Fixed& original);
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
 };
-
-
-#endif 

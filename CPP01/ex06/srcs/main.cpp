@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 16:55:34 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/03/01 16:55:34 by dnieto-c         ###   ########.fr       */
+/*   Created: 2023/03/04 13:09:51 by dnieto-c          #+#    #+#             */
+/*   Updated: 2023/03/04 13:09:51 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL
-#define HARL
+#include "../includes/Harl.hpp"
 
-# include <iostream>
-class Harl
+int main(int argc, char const *argv[])
 {
-    private:
-        void debug(void);
-        void info(void);
-        void warning(void);
-        void error(void);
-    public:
-        Harl(/* args */);
-        ~Harl();
-        void complain(std::string level);
-};
-
-
-#endif 
+    if (argc == 2)
+    {
+        Harl HarlRobot(argv[1]);
+        HarlRobot.harlFilter();
+    }
+    return 0;
+}

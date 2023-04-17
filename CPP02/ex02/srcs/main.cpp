@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/01 16:55:34 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/03/01 16:55:34 by dnieto-c         ###   ########.fr       */
+/*   Created: 2023/03/23 14:49:14 by dnieto-c          #+#    #+#             */
+/*   Updated: 2023/03/23 14:49:14 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL
-#define HARL
+#include "../includes/Fixed.hpp"
 
-# include <iostream>
-class Harl
+int main( void )
 {
-    private:
-        void debug(void);
-        void info(void);
-        void warning(void);
-        void error(void);
-    public:
-        Harl(/* args */);
-        ~Harl();
-        void complain(std::string level);
-};
-
-
-#endif 
+    Fixed const b(Fixed(5.05f) * Fixed(2));
+    std::cout << b << "\n";
+    return 0;
+}
