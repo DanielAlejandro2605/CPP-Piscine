@@ -15,6 +15,7 @@
 
 # include <iostream>
 # include <math.h>
+# include <cstring>
 
 class Fixed
 {
@@ -35,4 +36,6 @@ class Fixed
 };
 
 std::ostream& operator<<(std::ostream &output, Fixed const &fixed_point_number);
+void printFloatBinary(float num);
+void printFloatRepresentation(float num);
 #endif

@@ -36,19 +36,8 @@ Fixed::Fixed(int const integer_number)
 Fixed::Fixed(float const float_number)
 {
     std::cout << "Execution of the float constructor of the Fixed Class!\n";
-    // int result = 0;
-    // int i = 0;
-    // while (i < this->fractional_bits)
-    // {
-    //     if (i == 0)
-    //         result += 2;
-    //     else
-    //     {
-    //         result *= 2;
-    //     }
-    //     i++;
-    // }
-    fixed_point_number_value = roundf(float_number * (1 << this->fractional_bits));
+    this->fixed_point_number_value = roundf(float_number * (1 << this->fractional_bits));
+    std::cout << this->fixed_point_number_value << "\n";
 }
 
 Fixed::~Fixed(void)
@@ -69,16 +58,7 @@ void Fixed::setRawBits(int const raw)
 
 float   Fixed::toFloat(void) const
 {
-    float float_number = (float)this->fixed_point_number_value;
-    int i = 1;
-
-    while (i <= this->fractional_bits)
-    {
-        float_number /= 2.0f;
-        i++;
-    }
-	// std::cout << float_number << "\n";
-	// std::cout << (float)this->fixed_point_number_value / (1 << this->fractional_bits) << "\n";
+	float float_number = (float)this->fixed_point_number_value / (1 << this->fractional_bits);
 	return (float_number);
 }
 
@@ -111,3 +91,28 @@ std::ostream&	operator<<(std::ostream &output, Fixed const &fixed_point_number)
 	output << fixed_point_number.toFloat();
 	return (output);
 }
+
+/*Not subjetc functions*/
+void printFloatRepresentation(float num) {
+    unsigned char binary[sizeof(float)];
+    std::memcpy(binary, &num, sizeof(float));
+
+    std::cout << "Signo: " << ((binary[3] >> 7) & 1) << std::endl;
+
+    unsigned char exponent = (binary[3] & 0x7F) << 1;
+    exponent |= (binary[2] >> 7) & 1;
+    std::cout << "Exponente: ";
+    for (int i = 7; i >= 0; --i) {
+        std::cout << ((exponent >> i) & 1);
+    }
+    std::cout << std::endl;
+
+    std::cout << "Mantisa: ";
+    for (int i = 2; i >= 0; --i) {
+        for (int j = 7; j >= 0; --j) {
+            std::cout << ((binary[i] >> j) & 1);
+        }
+    }
+    std::cout << std::endl;
+}
+
