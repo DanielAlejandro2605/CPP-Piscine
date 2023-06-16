@@ -28,6 +28,7 @@ int main( void )
     std::cout << "e " << e << "\n";
     {
         std::cout << "***************************************\n";
+        std::cout << "Let's compare\n";
         if (a > b)   
             std::cout << "a is greather than b\n";
         if (c == b)
@@ -40,8 +41,28 @@ int main( void )
     {
         Fixed a;
         std::cout << "***************************************\n";
-        std::cout << "a " << a << "\n";
-        std::cout << ++a << "\n";
+        std::cout << "Let's increment and decrement\n";
+        std::cout << a << std::endl;
+        std::cout << ++a << std::endl;
+        std::cout << a << std::endl;
+        std::cout << a++ << std::endl;
+        std::cout << a << std::endl;
+        std::cout << --a << std::endl;
+        std::cout << a << std::endl;
+        std::cout << a-- << std::endl;
+        std::cout << a << std::endl;
+    }
+    {
+        Fixed a(68.58f);
+        Fixed b(Fixed(6.045f) * Fixed(2.258f));
+        Fixed const num1;
+        Fixed const num2(-0.1f);
+        std::cout << "***************************************\n";
+        std::cout << "Let's use min and max\n";
+        std::cout << Fixed::min( a, b ) << std::endl;
+        std::cout << Fixed::min( num1, num2 ) << std::endl;
+        std::cout << Fixed::max( a, b ) << std::endl;
+        std::cout << Fixed::max( num1, num2 ) << std::endl;
     }
     return 0;
 }
