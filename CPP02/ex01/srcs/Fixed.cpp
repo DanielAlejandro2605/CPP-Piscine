@@ -25,35 +25,34 @@ Fixed::Fixed(const Fixed &original)
     *this = original;
 }
 
-// Int constructor
-Fixed::Fixed(int const integer_number)
-{
-    std::cout << "Execution of the int constructor of the Fixed Class!\n";
-    this->fixed_point_number_value = integer_number << this->fractional_bits;
-}
-
-// Float constructor
-Fixed::Fixed(float const float_number)
-{
-    std::cout << "Execution of the float constructor of the Fixed Class!\n";
-    this->fixed_point_number_value = roundf(float_number * (1 << this->fractional_bits));
-    std::cout << this->fixed_point_number_value << "\n";
-}
-
+// Destructor
 Fixed::~Fixed(void)
 {
     std::cout << "Executing destructor of Fixed Class!\n";
 }
 
-int Fixed::getRawBits(void) const
+/*
+In general, mathematically, given a fixed binary point position, shifting the bit pattern of a
+number to the right by 1 bit always divide the number by 2. Similarly, shifting a number to the
+left by 1 bit multiplies the number by 2.
+*/
+
+/*Int constructor*/
+Fixed::Fixed(int const integer_number)
 {
-    std::cout << "getRawBits member function called\n";
-    return (this->fixed_point_number_value);
+    std::cout << "Execution of the int constructor of the Fixed Class!\n";
+    this->fixed_point_number_value = integer_number * (1 << this->fractional_bits);
 }
 
-void Fixed::setRawBits(int const raw)
+/*
+Float constructor
+En algunos casos, esta funcion puede causar directamente perdida de precision
+en los float e.g 42.42
+*/
+Fixed::Fixed(float const float_number)
 {
-    this->fixed_point_number_value = raw;
+    std::cout << "Execution of the float constructor of the Fixed Class!\n";
+    this->fixed_point_number_value = roundf(float_number * (1 << this->fractional_bits));
 }
 
 float   Fixed::toFloat(void) const
@@ -64,16 +63,25 @@ float   Fixed::toFloat(void) const
 
 int Fixed::toInt( void ) const
 {
-	int	integer_number = (int)this->fixed_point_number_value;
-	int	i = 1;
-
-	while (i <= this->fractional_bits)
-	{
-		integer_number /= 2;
-		i++;
-	}
-	// std::cout << integer_number << "\n";
+	int	integer_number = (int)this->fixed_point_number_value / (1 << this->fractional_bits);
 	return (integer_number);
+}
+
+/*
+"RawBits" refers to the raw bits or direct binary representation of a value. In simpler terms, 
+they are the bits that make up a piece of data without performing any additional interpretation
+or manipulation.
+*/
+
+int Fixed::getRawBits(void) const
+{
+    std::cout << "getRawBits member function called\n";
+    return (this->fixed_point_number_value);
+}
+
+void Fixed::setRawBits(int const raw)
+{
+    this->fixed_point_number_value = raw;
 }
 
 // Member operator overload
@@ -91,28 +99,3 @@ std::ostream&	operator<<(std::ostream &output, Fixed const &fixed_point_number)
 	output << fixed_point_number.toFloat();
 	return (output);
 }
-
-/*Not subjetc functions*/
-void printFloatRepresentation(float num) {
-    unsigned char binary[sizeof(float)];
-    std::memcpy(binary, &num, sizeof(float));
-
-    std::cout << "Signo: " << ((binary[3] >> 7) & 1) << std::endl;
-
-    unsigned char exponent = (binary[3] & 0x7F) << 1;
-    exponent |= (binary[2] >> 7) & 1;
-    std::cout << "Exponente: ";
-    for (int i = 7; i >= 0; --i) {
-        std::cout << ((exponent >> i) & 1);
-    }
-    std::cout << std::endl;
-
-    std::cout << "Mantisa: ";
-    for (int i = 2; i >= 0; --i) {
-        for (int j = 7; j >= 0; --j) {
-            std::cout << ((binary[i] >> j) & 1);
-        }
-    }
-    std::cout << std::endl;
-}
-

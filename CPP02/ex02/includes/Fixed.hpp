@@ -33,13 +33,25 @@ class Fixed
 		void	setRawBits(int const raw);
 		float	toFloat(void) const;
 		int		toInt( void ) const;
-		// Operator prototypes
+		/* Operator prototypes*/
 		Fixed&	operator=(const Fixed& original);
-		Fixed	operator+(const Fixed& addition_number);
-		Fixed	operator-(const Fixed& subtraction_number);
-		Fixed	operator*(const Fixed &factor_number);
-		Fixed	operator/(const Fixed &divisor_number);
+		// Arithmetic operators
+		Fixed	operator+(const Fixed& addition_number) const;
+		Fixed	operator-(const Fixed& subtraction_number) const;
+		Fixed	operator*(const Fixed &factor_number) const;
+		Fixed	operator/(const Fixed &divisor_number) const;
+		// Comparison operators
+		bool	operator>(const Fixed& other_fixed_point_number) const;
+		bool	operator<(const Fixed& other_fixed_point_number) const;
+		bool	operator>=(const Fixed& other_fixed_point_number) const;
+		bool	operator<=(const Fixed& other_fixed_point_number) const;
+		bool	operator==(const Fixed& other_fixed_point_number) const;
+		bool	operator!=(const Fixed& other_fixed_point_number) const;
+		/*Increment and decrement*/
+		Fixed&	operator++();
+		Fixed&	operator++(int);
 };
 
+// Functions
 std::ostream& operator<<(std::ostream &output, Fixed const &fixed_point_number);
 #endif
