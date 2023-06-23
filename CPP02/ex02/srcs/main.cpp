@@ -19,6 +19,7 @@ int main( void )
     Fixed c(10.1016f);
     Fixed d(26);
     Fixed e(0.008f);
+    Fixed f(Fixed(5.05f) / Fixed(2));
     std::cout << "***************************************\n";
     std::cout << "Voila my numbers !\n";
     std::cout << "a " << a << "\n";
@@ -26,6 +27,7 @@ int main( void )
     std::cout << "c " << c << "\n";
     std::cout << "d " << d << "\n";
     std::cout << "e " << e << "\n";
+    std::cout << "f " << f << "\n";
     {
         std::cout << "***************************************\n";
         std::cout << "Let's compare\n";

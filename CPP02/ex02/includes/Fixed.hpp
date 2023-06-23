@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED
-#define FIXED
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
 # include <iostream>
 # include <math.h>
@@ -53,30 +53,10 @@ class Fixed
 		Fixed&	operator--();
 		Fixed   operator--(int);
 		/*Static min and max*/
-		static Fixed&	min(Fixed& fixed_point_number_1, Fixed& fixed_point_number_2){
-			if (fixed_point_number_1 < fixed_point_number_2)
-				return (fixed_point_number_1);
-			else
-				return (fixed_point_number_2);
-		}
-		static const Fixed&	min(const Fixed& fixed_point_number_1, const Fixed& fixed_point_number_2){
-			if (fixed_point_number_1 < fixed_point_number_2)
-				return (fixed_point_number_1);
-			else
-				return (fixed_point_number_2);
-		}
-		static Fixed&	max(Fixed& fixed_point_number_1, Fixed& fixed_point_number_2){
-			if (fixed_point_number_1 > fixed_point_number_2)
-				return (fixed_point_number_1);
-			else
-				return (fixed_point_number_2);
-		}
-		static const Fixed&	max(const Fixed& fixed_point_number_1, const Fixed& fixed_point_number_2){
-			if (fixed_point_number_1 > fixed_point_number_2)
-				return (fixed_point_number_1);
-			else
-				return (fixed_point_number_2);
-		}
+		static Fixed&	min(Fixed& fixed_point_number_1, Fixed& fixed_point_number_2);
+		static const Fixed&	min(const Fixed& fixed_point_number_1, const Fixed& fixed_point_number_2);
+		static Fixed&	max(Fixed& fixed_point_number_1, Fixed& fixed_point_number_2);
+		static const Fixed&	max(const Fixed& fixed_point_number_1, const Fixed& fixed_point_number_2);
 };
 
 // Functions

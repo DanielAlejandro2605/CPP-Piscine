@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED
-#define FIXED
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
 # include <iostream>
 # include <math.h>
@@ -36,6 +36,4 @@ class Fixed
 };
 
 std::ostream& operator<<(std::ostream &output, Fixed const &fixed_point_number);
-void printFloatBinary(float num);
-void printFloatRepresentation(float num);
 #endif

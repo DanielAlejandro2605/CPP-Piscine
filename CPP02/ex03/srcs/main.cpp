@@ -12,20 +12,37 @@
 
 #include "../includes/Point.hpp"
 
-bool bsp(Point const a, Point const b, Point const c, Point const point){
-    std::cout << a.getX().toFloat() << "\n";
-    std::cout << b.getX().toFloat() << "\n";
-    std::cout << c.getX().toFloat() << "\n";
-    std::cout << point.getX().toFloat() << "\n";
-    return (true);
-}
-
 int main( void )
 {
-    Point pointA(2.25f, 3.5f);
-    Point pointB(1.5f, 4.3f);
-    Point pointC(5.2f, 1.2f);
-    Point pointSearched(3.5f, 3.5f);
-    bsp(pointA, pointB, pointC, pointSearched);
+    {
+        Point const pointA(-2.0f, 1.0f);
+        Point const pointB(2.0f, 2.5f);
+        Point const pointC(1.0f, -3.2f);
+        Point const pointSearched(-0.8f, -1.0f);
+        if (bsp(pointA, pointB, pointC, pointSearched))
+            std::cout << "The point is inside the triangle!" << std::endl;
+        else
+           std::cout << "The point is NOT inside the triangle :(" << std::endl; 
+    }
+    {
+        Point const pointA(-2.0f, 1.0f);
+        Point const pointB(2.0f, 2.5f);
+        Point const pointC(1.0f, -3.2f);
+        Point const pointSearched(1.0f, 1.0f);
+        if (bsp(pointA, pointB, pointC, pointSearched))
+            std::cout << "The point is inside the triangle!" << std::endl;
+        else
+           std::cout << "The point is NOT inside the triangle :(" << std::endl; 
+    }
+    {
+        Point const pointA(-2.0f, 1.0f);
+        Point const pointB(2.0f, 2.5f);
+        Point const pointC(1.0f, -3.2f);
+        Point const pointSearched(2.0f, 2.5f);
+        if (bsp(pointA, pointB, pointC, pointSearched))
+            std::cout << "The point is inside the triangle!" << std::endl;
+        else
+           std::cout << "The point is NOT inside the triangle :(" << std::endl; 
+    }
     return 0;
 }

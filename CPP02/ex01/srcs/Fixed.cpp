@@ -16,6 +16,7 @@
 Fixed::Fixed () : fixed_point_number_value(0)
 {
     std::cout << "Execution of the default constructor of the Fixed Class!\n";
+    return ;
 }
 
 // Copy constructor
@@ -29,6 +30,7 @@ Fixed::Fixed(const Fixed &original)
 Fixed::~Fixed(void)
 {
     std::cout << "Executing destructor of Fixed Class!\n";
+    return ;
 }
 
 /*
@@ -50,7 +52,7 @@ En algunos casos, esta funcion puede causar directamente perdida de precision
 en los float e.g 42.42
 */
 Fixed::Fixed(float const float_number)
-{
+{ 
     std::cout << "Execution of the float constructor of the Fixed Class!\n";
     this->fixed_point_number_value = roundf(float_number * (1 << this->fractional_bits));
 }

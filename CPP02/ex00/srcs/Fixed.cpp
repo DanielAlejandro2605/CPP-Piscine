@@ -12,7 +12,7 @@
 
 #include "../includes/Fixed.hpp"
 
-Fixed::Fixed(void) fixed_point_number_value(0)
+Fixed::Fixed(void) : fixed_point_number_value(0)
 {
     std::cout << "Execution of the default constructor of the Fixed Class!\n";
 }

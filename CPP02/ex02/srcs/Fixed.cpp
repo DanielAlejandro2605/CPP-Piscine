@@ -16,6 +16,7 @@
 Fixed::Fixed () : fixed_point_number_value(0)
 {
     //std::cout << "Execution of the default constructor of the Fixed Class!\n";
+    return ;
 }
 
 // Copy constructor
@@ -29,6 +30,7 @@ Fixed::Fixed(const Fixed &original)
 Fixed::~Fixed(void)
 {
     //std::cout << "Executing destructor of Fixed Class!\n";
+    return ;
 }
 
 /*
@@ -196,4 +198,34 @@ Fixed   Fixed::operator--(int)
 	Fixed temp = *this;
 	--this->fixed_point_number_value;
 	return (temp);
+}
+
+
+/*Min and max functions*/
+Fixed&	Fixed::min(Fixed& fixed_point_number_1, Fixed& fixed_point_number_2){
+    if (fixed_point_number_1 < fixed_point_number_2)
+        return (fixed_point_number_1);
+    else
+        return (fixed_point_number_2);
+}
+
+const Fixed&    Fixed::min(const Fixed& fixed_point_number_1, const Fixed& fixed_point_number_2){
+    if (fixed_point_number_1 < fixed_point_number_2)
+        return (fixed_point_number_1);
+    else
+        return (fixed_point_number_2);
+}
+
+Fixed&	Fixed::max(Fixed& fixed_point_number_1, Fixed& fixed_point_number_2){
+    if (fixed_point_number_1 > fixed_point_number_2)
+        return (fixed_point_number_1);
+    else
+        return (fixed_point_number_2);
+}
+
+const Fixed&	Fixed::max(const Fixed& fixed_point_number_1, const Fixed& fixed_point_number_2){
+    if (fixed_point_number_1 > fixed_point_number_2)
+        return (fixed_point_number_1);
+    else
+        return (fixed_point_number_2);
 }

@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FIXED
-#define FIXED
+#ifndef FIXED_HPP
+#define FIXED_HPP
 
 # include <iostream>
 # include <math.h>

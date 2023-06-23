@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/16 19:26:10 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/16 20:44:25 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/06/19 16:44:29 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,9 @@ class Point
 		/*Assignment operator overload*/
 		Point&	operator=(const Point& original);
 		/*Useful stuff*/
-		Fixed const	getX(void) const;
-		Fixed const	getY(void) const;
+		Fixed getX(void) const;
+		Fixed getY(void) const;
 };
 
+bool bsp(Point const a, Point const b, Point const c, Point const point);
 #endif
