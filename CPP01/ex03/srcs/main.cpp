@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:56:24 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/03/01 14:52:32 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/06/26 13:44:39 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(void)
 		club.setType("some other type of club");
 		bob.attack();
 	}
-	std::cout << "\n\n";
+	std::cout << std::endl << std::endl;
 	{
 		Weapon club = Weapon("crude spiked club");
 		HumanB jim("Jim");

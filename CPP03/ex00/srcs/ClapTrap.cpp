@@ -6,17 +6,25 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 16:20:16 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/22 20:34:48 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/06/26 14:53:59 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ClapTrap.hpp"
 
 /*Orthodox Canonical Form*/
+
+ClapTrap::ClapTrap()
+    : name("ClapTrap default name"), hit_points(10), energy_points(10), attack_damage(0)
+{
+    std::cout << BGWHITE "Constructor ClapTrap Class called!" << RESET << std::endl;
+    return ;
+}
+
 ClapTrap::ClapTrap(std::string _name_value)
     : name(_name_value), hit_points(10), energy_points(10), attack_damage(0)
 {
-    std::cout << "Execution of the default constructor of the ClapTrap Class!\n";
+    std::cout << BGWHITE "Constructor ClapTrap Class called!" << RESET << std::endl;
     return ;
 }
 

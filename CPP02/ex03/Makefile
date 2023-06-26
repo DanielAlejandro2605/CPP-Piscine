@@ -1,4 +1,4 @@
-NAME					=	fixed
+NAME					=	bsp
 CC						=	c++
 FLAGS					=	-Wall -Wextra -Werror -std=c++98
 RM						=	rm -f
@@ -53,7 +53,7 @@ header:
 
 define HEADER_PROJECT
 
-CPP MODULE 02
+CPP MODULE 02/EX03
 
 endef
 export HEADER_PROJECT

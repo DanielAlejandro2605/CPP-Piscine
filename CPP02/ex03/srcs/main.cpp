@@ -13,10 +13,10 @@
 #include "../includes/Point.hpp"
 
 bool bsp(Point const a, Point const b, Point const c, Point const point){
-    std::cout << a.getX().toFloat() << "\n";
-    std::cout << b.getX().toFloat() << "\n";
-    std::cout << c.getX().toFloat() << "\n";
-    std::cout << point.getX().toFloat() << "\n";
+    std::cout << a.getX().toFloat() << std::endl;
+    std::cout << b.getX().toFloat() << std::endl;
+    std::cout << c.getX().toFloat() << std::endl;
+    std::cout << point.getX().toFloat() << std::endl;
     return (true);
 }
 

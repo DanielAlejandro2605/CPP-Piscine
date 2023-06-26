@@ -7,11 +7,11 @@ Zombie::Zombie(std::string name_of_zombie)
 
 Zombie::~Zombie()
 {
-    std::cout << "Now, executing the destructor of " << this->_name << "\n";
+    std::cout << "Now, executing the destructor of " << this->_name << std::endl;
 }
 
 void Zombie::announce(void)
 {
 	std::cout << this->_name;
-	std::cout << ": BraiiiiiiinnnzzzZ...\n";
+	std::cout << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

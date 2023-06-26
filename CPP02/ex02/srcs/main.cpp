@@ -19,29 +19,29 @@ int main( void )
     Fixed c(10.1016f);
     Fixed d(26);
     Fixed e(0.008f);
-    std::cout << "***************************************\n";
-    std::cout << "Voila my numbers !\n";
-    std::cout << "a " << a << "\n";
-    std::cout << "b " << b << "\n";
-    std::cout << "c " << c << "\n";
-    std::cout << "d " << d << "\n";
-    std::cout << "e " << e << "\n";
+    std::cout << "***************************************" << std::endl;
+    std::cout << "Voila my numbers !" << std::endl;
+    std::cout << "a " << a << std::endl;
+    std::cout << "b " << b << std::endl;
+    std::cout << "c " << c << std::endl;
+    std::cout << "d " << d << std::endl;
+    std::cout << "e " << e << std::endl;
     {
-        std::cout << "***************************************\n";
-        std::cout << "Let's compare\n";
+        std::cout << "***************************************" << std::endl;
+        std::cout << "Let's compare" << std::endl;
         if (a > b)   
-            std::cout << "a is greather than b\n";
+            std::cout << "a is greather than b" << std::endl;
         if (c == b)
-            std::cout << "c is equals to b\n";
+            std::cout << "c is equals to b" << std::endl;
         if (d != c)
-            std::cout << "d is different to c\n";
+            std::cout << "d is different to c" << std::endl;
         if (e < c && e < b)
-            std::cout << "e is very small\n";
+            std::cout << "e is very small" << std::endl;
     }
     {
         Fixed a;
-        std::cout << "***************************************\n";
-        std::cout << "Let's increment and decrement\n";
+        std::cout << "***************************************" << std::endl;
+        std::cout << "Let's increment and decrement" << std::endl;
         std::cout << a << std::endl;
         std::cout << ++a << std::endl;
         std::cout << a << std::endl;
@@ -57,8 +57,8 @@ int main( void )
         Fixed b(Fixed(6.045f) * Fixed(2.258f));
         Fixed const num1;
         Fixed const num2(-0.1f);
-        std::cout << "***************************************\n";
-        std::cout << "Let's use min and max\n";
+        std::cout << "***************************************" << std::endl;
+        std::cout << "Let's use min and max" << std::endl;
         std::cout << Fixed::min( a, b ) << std::endl;
         std::cout << Fixed::min( num1, num2 ) << std::endl;
         std::cout << Fixed::max( a, b ) << std::endl;

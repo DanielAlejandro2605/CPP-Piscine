@@ -14,44 +14,44 @@
 
 Harl::Harl(const char *arg)
 {
-    std::cout << "Executing the constructor of Harl class\n";
+    std::cout << "Executing the constructor of Harl class" << std::endl;
 	std::string	harl_levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	int			i;
-	this->filter_level.assign(arg);
+	this->_filter_level.assign(arg);
 
 	i = 0;
 	while (i < 4)
 	{
-		if (this->filter_level.compare(harl_levels[i]) == 0)
+		if (this->_filter_level.compare(harl_levels[i]) == 0)
 			break;
 		i++;
 	}
-	this->level = i;
+	this->_level = i;
 }
 
 Harl::~Harl()
 {
-    std::cout << "Executing the destructor of Harl class\n";
+    std::cout << "Executing the destructor of Harl class" << std::endl;
 }
 
 void	Harl::debug(void)
 {
-    std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!\n";
+    std::cout << "I love having extra bacon for my 7XL-double-cheese-triple-pickle-special-ketchup burger. I really do!" << std::endl;
 }
 
 void	Harl::info(void)
 {
-	std::cout << "I cannot believe adding extra bacon costs more money. You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!\n";
+	std::cout << "I cannot believe adding extra bacon costs more money. You didn't put enough bacon in my burger! If you did, I wouldn't be asking for more!" << std::endl;
 }
 
 void	Harl::warning(void)
 {
-    std::cout << "I think I deserve to have some extra bacon for free.\nI've been coming for years whereas you started working here since last month.\n";
+    std::cout << "I think I deserve to have some extra bacon for free.\nI've been coming for years whereas you started working here since last month." << std::endl;
 }
 
 void	Harl::error(void)
 {
-	std::cout << "This is unacceptable! I want to speak to the manager now\n";
+	std::cout << "This is unacceptable! I want to speak to the manager now" << std::endl;
 }
 
 void    Harl::complain(int begin_level)
@@ -63,16 +63,16 @@ void    Harl::complain(int begin_level)
 	i = begin_level;
 	while (i < 4)
 	{
-		std::cout << "[ " << harl_levels[i] << "]\n";
+		std::cout << "[ " << harl_levels[i] << "]" << std::endl;
 		(this->*HarlFunctions[i])();
-		std::cout << "\n";
+		std::cout << "" << std::endl;
 		i++;
 	}
 }
 
 void	Harl::harlFilter(void)
 {
-	switch (this->level)
+	switch (this->_level)
 	{
 		case 0:
 			Harl::complain(0);
@@ -87,7 +87,7 @@ void	Harl::harlFilter(void)
 			Harl::complain(3);
 		break;
 	default:
-			std::cout << "[ Probably complaining about insignificant problems ]\n";
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 		break;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/23 19:40:32 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/02/23 20:45:01 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/06/26 13:45:33 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ int	main(int argc, char *argv[])
 	}
     else 
     {
-		std::cout << "The sed program must have 2 arguments, no more no less\n";
+		std::cout << "The sed program must have 2 arguments, no more no less" << std::endl;
     }
 }

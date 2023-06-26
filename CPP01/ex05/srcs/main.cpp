@@ -16,14 +16,14 @@ int main(void)
 {
     Harl HarlRobot;
 
-    std::cout << "What do you want today Harl?\n";
+    std::cout << "What do you want today Harl?" << std::endl;
     HarlRobot.complain("DEBUG");
-    std::cout << "The extra bacon cost more money.\n";
+    std::cout << "The extra bacon cost more money." << std::endl;
     HarlRobot.complain("INFO");
-	std::cout << "I'm sorry, those are the rules\n";
+	std::cout << "I'm sorry, those are the rules" << std::endl;
 	HarlRobot.complain("WARNING");
-	std::cout << "I can't help you\n";
+	std::cout << "I can't help you" << std::endl;
 	HarlRobot.complain("ERROR");
-	std::cout << "I'm also the manager\n";
+	std::cout << "I'm also the manager" << std::endl;
     return 0;
 }

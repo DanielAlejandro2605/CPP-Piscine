@@ -13,22 +13,22 @@
 #include "../includes/Fixed.hpp"
 
 // Default constructor
-Fixed::Fixed () : fixed_point_number_value(0)
+Fixed::Fixed () : _fixed_point_number_value(0)
 {
-    std::cout << "Execution of the default constructor of the Fixed Class!\n";
+    std::cout << "Execution of the default constructor of the Fixed Class!" << std::endl;
 }
 
 // Copy constructor
 Fixed::Fixed(const Fixed &original)
 {
-    std::cout << "Execution of the copy constructor of the Fixed Class!\n";
+    std::cout << "Execution of the copy constructor of the Fixed Class!" << std::endl;
     *this = original;
 }
 
 // Destructor
 Fixed::~Fixed(void)
 {
-    std::cout << "Executing destructor of Fixed Class!\n";
+    std::cout << "Executing destructor of Fixed Class!" << std::endl;
 }
 
 /*
@@ -40,8 +40,8 @@ left by 1 bit multiplies the number by 2.
 /*Int constructor*/
 Fixed::Fixed(int const integer_number)
 {
-    std::cout << "Execution of the int constructor of the Fixed Class!\n";
-    this->fixed_point_number_value = integer_number * (1 << this->fractional_bits);
+    std::cout << "Execution of the int constructor of the Fixed Class!" << std::endl;
+    this->_fixed_point_number_value = integer_number * (1 << this->_fractional_bits);
 }
 
 /*
@@ -51,19 +51,19 @@ en los float e.g 42.42
 */
 Fixed::Fixed(float const float_number)
 {
-    std::cout << "Execution of the float constructor of the Fixed Class!\n";
-    this->fixed_point_number_value = roundf(float_number * (1 << this->fractional_bits));
+    std::cout << "Execution of the float constructor of the Fixed Class!" << std::endl;
+    this->_fixed_point_number_value = roundf(float_number * (1 << this->_fractional_bits));
 }
 
 float   Fixed::toFloat(void) const
 {
-	float float_number = (float)this->fixed_point_number_value / (1 << this->fractional_bits);
+	float float_number = (float)this->_fixed_point_number_value / (1 << this->_fractional_bits);
 	return (float_number);
 }
 
 int Fixed::toInt( void ) const
 {
-	int	integer_number = (int)this->fixed_point_number_value / (1 << this->fractional_bits);
+	int	integer_number = (int)this->_fixed_point_number_value / (1 << this->_fractional_bits);
 	return (integer_number);
 }
 
@@ -75,21 +75,21 @@ or manipulation.
 
 int Fixed::getRawBits(void) const
 {
-    std::cout << "getRawBits member function called\n";
-    return (this->fixed_point_number_value);
+    std::cout << "getRawBits member function called" << std::endl;
+    return (this->_fixed_point_number_value);
 }
 
 void Fixed::setRawBits(int const raw)
 {
-    this->fixed_point_number_value = raw;
+    this->_fixed_point_number_value = raw;
 }
 
 // Member operator overload
 Fixed& Fixed::operator=(const Fixed& original)
 {
-    std::cout << "Copy assignment operator called\n";
+    std::cout << "Copy assignment operator called" << std::endl;
     if (this != &original) {
-        this->fixed_point_number_value = original.getRawBits();
+        this->_fixed_point_number_value = original.getRawBits();
     }
     return *this;
 }

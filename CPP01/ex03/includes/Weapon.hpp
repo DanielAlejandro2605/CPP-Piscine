@@ -6,11 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 20:57:16 by dnieto-c          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/02/21 19:07:54 by dnieto-c         ###   ########.fr       */
-=======
-/*   Updated: 2023/02/23 19:11:25 by dnieto-c         ###   ########.fr       */
->>>>>>> eb844f85b4720f2e112af5a5856fb8cccf2bd0a0
+/*   Updated: 2023/06/26 13:39:46 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +18,11 @@
 class Weapon
 {
     private:
-<<<<<<< HEAD
-        std::string	type;
-=======
         std::string	_type;
->>>>>>> eb844f85b4720f2e112af5a5856fb8cccf2bd0a0
     public:
         Weapon();
 		Weapon(std::string type_value);
         ~Weapon();
-<<<<<<< HEAD
-		std::string			getSimpleType(void);
-        const std::string	&getType(void);
-		void				setType(std::string new_value_type);
-};
-
-=======
         const std::string   &getType(void);
 		void				setType(const std::string new_value_type);
 };
@@ -62,5 +47,4 @@ Anyhow, for what you're too use add return. There's basically a few options.
 3:  Give access to a variable the class owns: use a (const) reference. Consider carefully when not
     making the reference const: This is often a code smell.
 */
->>>>>>> eb844f85b4720f2e112af5a5856fb8cccf2bd0a0
 #endif 
