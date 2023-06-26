@@ -1,4 +1,4 @@
-NAME					=	clap_trap
+NAME					=	repetive_work
 CC						=	c++
 FLAGS					=	-Wall -Wextra -Werror -std=c++98
 RM						=	rm -f
@@ -8,7 +8,7 @@ SRC_PATH = srcs/
 OBJ_PATH = objs/
 HEADER_PATH = includes/
 ### All sources ###
-SOURCES		=	main.cpp ClapTrap.cpp
+SOURCES		=	main.cpp ClapTrap.cpp ScavTrap.cpp FragTrap.cpp
 ### All objects ###
 
 SRCS = $(addprefix $(SRC_PATH),$(SOURCES))
@@ -53,7 +53,7 @@ header:
 
 define HEADER_PROJECT
 
-CPP MODULE 03/EX00
+CPP MODULE 03/EX02
 
 endef
 export HEADER_PROJECT

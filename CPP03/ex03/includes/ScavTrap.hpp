@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:32:48 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/26 16:40:58 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/06/26 21:33:54 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 #include "../includes/ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap {
+class ScavTrap : public virtual ClapTrap {
 	
 	public:
 		ScavTrap();

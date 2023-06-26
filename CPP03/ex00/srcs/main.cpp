@@ -17,39 +17,41 @@ int main( void )
     {
         std::cout << "Testing Orthodox Canonical Form" << std::endl;
         ClapTrap	first_clap_trap("Daniel");
-		first_clap_trap.printClapTrapInfo();
+		std::cout << first_clap_trap << std::endl;
 		ClapTrap	second_clap_trap("Alejandro");
-		second_clap_trap.printClapTrapInfo();
+		std::cout << second_clap_trap << std::endl;
 		second_clap_trap = first_clap_trap;
-		second_clap_trap.printClapTrapInfo();
+		std::cout << second_clap_trap << std::endl;
 		ClapTrap third_clap_trap(second_clap_trap);
-		third_clap_trap.printClapTrapInfo();
+		std::cout << third_clap_trap << std::endl;
     }
 	{
 		std::cout << "**********************************************************" << std::endl;
 		std::cout << "Testing member functions" << std::endl;
 		ClapTrap	first_clap_trap("Daniel");
-		first_clap_trap.printClapTrapInfo();
+		std::cout << first_clap_trap << std::endl;
 		first_clap_trap.attack("Chelo");
 		first_clap_trap.attack("Miguel");
 		first_clap_trap.attack("Alix");
 		first_clap_trap.attack("Amanda");
 		first_clap_trap.attack("Yoel");
-		first_clap_trap.takeDamage(10);
+		first_clap_trap.takeDamage(5);
 		first_clap_trap.attack("Gabo");
 		first_clap_trap.attack("Pieri");
 		first_clap_trap.attack("Jean");
 		first_clap_trap.attack("Romeo");
-		first_clap_trap.printClapTrapInfo();
+		std::cout << first_clap_trap << std::endl;
 		first_clap_trap.beRepaired(2);
 		first_clap_trap.attack("Alix");
 		first_clap_trap.attack("Amanda");
 	}
 	{
 		ClapTrap john("John");
+		std::cout << john;
 		ClapTrap jim("Jim");
+		std::cout << jim;
 		ClapTrap joe("Joe");
-
+		std::cout << joe;
 		john.attack("Marge");
 		john.attack("Bart");
 		john.attack("Homer");
@@ -58,6 +60,9 @@ int main( void )
 		jim.takeDamage(10);
 		joe.beRepaired(10);
 		joe.takeDamage(19);
+		std::cout << john << std::endl;
+		std::cout << jim << std::endl;
+		std::cout << joe << std::endl;
 	}
     return 0;
 }

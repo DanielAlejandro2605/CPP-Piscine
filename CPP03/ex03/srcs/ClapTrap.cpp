@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 16:20:16 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/26 15:10:01 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/06/26 21:10:01 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 /*Orthodox Canonical Form*/
 ClapTrap::ClapTrap()
-    : _name("ClapTrap default"), _hit_points(10), _energy_points(10), _attack_damage(0)
+    : _name("default ClapTrap"), _hit_points(10), _energy_points(10), _attack_damage(0)
 {
-    std::cout << BGCYAN << "ClapTrap default constructor called!" RESET << std::endl;
+    std::cout << BGCYAN << "default ClapTrap constructor called!" RESET << std::endl;
     return ;
 }
 
 ClapTrap::ClapTrap(std::string name_value)
     : _name(name_value), _hit_points(10), _energy_points(10), _attack_damage(0)
 {
-    std::cout << BGCYAN << "ClapTrap default constructor called!" RESET << std::endl;
+    std::cout << BGCYAN << "default ClapTrap constructor called!" RESET << std::endl;
     return ;
 }
 
