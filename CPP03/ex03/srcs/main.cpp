@@ -14,5 +14,13 @@
 
 int main (void)
 {
-    DiamondTrap diamond1("Daniel");
+    {
+        DiamondTrap diamond1("Daniel");
+        DiamondTrap diamond2(diamond1);
+
+        std::cout << diamond1;
+        std::cout << diamond2;
+        diamond1.whoAmI();
+        diamond2.attack("Daniel");
+    }
 }

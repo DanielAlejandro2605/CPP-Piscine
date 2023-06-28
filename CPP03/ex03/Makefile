@@ -53,7 +53,7 @@ header:
 
 define HEADER_PROJECT
 
-CPP MODULE 03/EX02
+CPP MODULE 03/EX03
 
 endef
 export HEADER_PROJECT
