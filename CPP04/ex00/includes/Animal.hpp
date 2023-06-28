@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:09:17 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/28 16:25:10 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/06/28 23:14:10 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,12 +46,14 @@ class Animal
 		Animal(void);
 		Animal(std::string type);
 		Animal(Animal const & src);
-		~Animal();
-		Animal &operator=( Animal const & rhs );
+		virtual ~Animal();
+		Animal &operator=(Animal const & rhs);
 		/*Accessors*/
-		std::string	getType(void) const;
+		std::string		getType(void) const;
+		/*Methods*/
+		virtual void	makeSound(void) const;
 };
 
-std::ostream& operator<<(std::ostream &output, Animal const &instance_animal)
+std::ostream& operator<<(std::ostream &output, Animal const &instance_animal);
 
 #endif /* ********************************************************** ANIMAL_H */

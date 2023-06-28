@@ -8,7 +8,7 @@ SRC_PATH = srcs/
 OBJ_PATH = objs/
 HEADER_PATH = includes/
 ### All sources ###
-SOURCES		=	main.cpp Animal.cpp
+SOURCES		=	main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp
 ### All objects ###
 
 SRCS = $(addprefix $(SRC_PATH),$(SOURCES))

@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:09:32 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/28 16:35:33 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/06/28 23:45:14 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,25 @@
 */
 
 Animal::Animal()
-	: _type("Default animal")
+	: _type("Animal")
 {
-	std:cout << BGRED << "Animal constructor called!" << std::endl;
-	
+	std::cout << BGRED << "Animal constructor called!" << RESET << std::endl;
+	return ;
 }
 
 Animal::Animal(std::string _type_animal)
 	: _type(_type_animal) 
 {
-	std:cout << BGRED << "Animal constructor called!" << std::endl;
+	std::cout << BGRED << "Animal constructor called!" << RESET << std::endl;
+	return ;
 }
 
 
 Animal::Animal(const Animal &src)
 {
-	std:cout << BGRED << "Animal copy constructor called!" << std::endl;
+	std::cout << BGRED << "Animal copy constructor called!" << RESET << std::endl;
 	this->_type.assign(src._type);
+	return ;
 }
 
 
@@ -43,7 +45,7 @@ Animal::Animal(const Animal &src)
 
 Animal::~Animal()
 {
-	std:cout << BGRED << "Animal destructor called!" << std::endl;
+	std::cout << BGRED << "Animal destructor called!" << RESET << std::endl;
 }
 
 
@@ -51,11 +53,11 @@ Animal::~Animal()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Animal &				Animal::operator=( Animal const & rhs )
+Animal &Animal::operator=(Animal const &rhs)
 {
 	if (this != &rhs)
 	{
-		this->_value = rhs.getType();
+		this->_type = rhs.getType();
 	}
 	return *this;
 }
@@ -63,7 +65,9 @@ Animal &				Animal::operator=( Animal const & rhs )
 std::ostream& operator<<(std::ostream &output, Animal const &instance_animal)
 {
     output << CYAN << "******************************" RESET <<  std::endl;
-    output << BLUE << "| 	TYPE : " << instance_animal.getType() << RESET << std::endl;
+	output << CYAN << "********   ANIMAL    *********" RESET <<  std::endl;
+    output << BLUE << "| TYPE : " << instance_animal.getType() << RESET << std::endl;
+	output << CYAN << "******************************" RESET <<  std::endl;
 	return (output);
 }
 
@@ -71,14 +75,13 @@ std::ostream& operator<<(std::ostream &output, Animal const &instance_animal)
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-
+void	Animal::makeSound(void) const {
+	std::cout << BGGREEN << "Animal making a sound yuoo!" << RESET << std::endl;	
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
-
-
-/* ************************************************************************** */
-std::string	getType(void) const {
+std::string	Animal::getType (void) const {
 	return (this->_type);
 }
