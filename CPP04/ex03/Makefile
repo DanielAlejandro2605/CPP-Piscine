@@ -1,4 +1,4 @@
-NAME					=	polymorphism
+NAME					=	interface_recap
 CC						=	c++
 FLAGS					=	-Wall -Wextra -Werror -std=c++98
 RM						=	rm -f
@@ -8,7 +8,7 @@ SRC_PATH = srcs/
 OBJ_PATH = objs/
 HEADER_PATH = includes/
 ### All sources ###
-SOURCES		=	main.cpp AMateria.cpp
+SOURCES		=	main.cpp Character.cpp AMateria.cpp
 ### All objects ###
 
 SRCS = $(addprefix $(SRC_PATH),$(SOURCES))

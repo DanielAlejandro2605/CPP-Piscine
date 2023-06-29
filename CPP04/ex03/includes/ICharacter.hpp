@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:01:36 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/29 13:01:37 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/06/29 19:35:01 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <iostream>
 # include <string>
 # include "AMateria.hpp"
+
+
+class AMateria;
 
 class ICharacter
 {
