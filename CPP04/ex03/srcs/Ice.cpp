@@ -5,7 +5,7 @@
 */
 
 Ice::Ice()
-	: AMateria("Ice")
+	: AMateria("ice")
 {
 	std::cout << BGBLUE << "Ice constructor called!" << RESET << std::endl;
 }
@@ -23,6 +23,7 @@ Ice::Ice(const Ice &src)
 
 Ice::~Ice()
 {
+	std::cout << BGBLUE << "Ice destructor called!" << RESET << std::endl;
 }
 
 
@@ -39,13 +40,12 @@ Ice &				Ice::operator=(Ice const &rhs)
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-AMateria*	Ice::clone(void) const
-{
+AMateria*	Ice::clone(void) const {
 	return (new Ice(*this));
 }
 
 void 		Ice::use(ICharacter &target) {
-	std::cout << BGBLUE << "* shoots an ice bolt at " << target.getName() << "*" << RESET << std::endl;
+	std::cout << BGBLUE << "* shoots an ice bolt at " << target.getName() << " *" << RESET << std::endl;
 }
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

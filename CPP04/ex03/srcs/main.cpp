@@ -6,20 +6,32 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:15:07 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/30 17:21:11 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/06/30 22:33:15 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Character.hpp"
 #include "../includes/AMateria.hpp"
+#include "../includes/Ice.hpp"
+#include "../includes/Cure.hpp"
+#include "../includes/MateriaSource.hpp"
 
 int main(void)
 {
-    Character	first_character("Daniel");
-	std::cout << first_character;
-	Character	second_character(first_character);
-	std::cout << second_character;
-	first_character.printInventory();
-	
-	return (0);
+	IMateriaSource* src = new MateriaSource();
+	src->learnMateria(new Ice());
+	src->learnMateria(new Cure());
+	ICharacter* me = new Character("me");
+	AMateria* tmp;
+	tmp = src->createMateria("ice");
+	me->equip(tmp);
+	tmp = src->createMateria("cure");
+	me->equip(tmp);
+	ICharacter* bob = new Character("bob");
+	me->use(0, *bob);
+	me->use(1, *bob);
+	delete bob;
+	delete me;
+	delete src;
+	return 0;
 }
