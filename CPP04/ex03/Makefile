@@ -1,6 +1,6 @@
 NAME					=	interface_recap
 CC						=	c++
-FLAGS					=	-Wall -Wextra -Werror -std=c++98
+FLAGS					=	-Wall -Wextra -Werror -std=c++98 -g
 RM						=	rm -f
 
 ### Directories ###
@@ -8,7 +8,7 @@ SRC_PATH = srcs/
 OBJ_PATH = objs/
 HEADER_PATH = includes/
 ### All sources ###
-SOURCES		=	main.cpp Character.cpp AMateria.cpp
+SOURCES		=	main.cpp Character.cpp AMateria.cpp Ice.cpp
 ### All objects ###
 
 SRCS = $(addprefix $(SRC_PATH),$(SOURCES))
