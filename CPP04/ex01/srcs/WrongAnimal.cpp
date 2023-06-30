@@ -1,41 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 16:09:32 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/29 20:17:14 by dnieto-c         ###   ########.fr       */
+/*   Created: 2023/06/28 23:42:00 by dnieto-c          #+#    #+#             */
+/*   Updated: 2023/06/28 23:46:34 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Animal.hpp"
+#include "../includes/WrongAnimal.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Animal::Animal()
-	: _type("Animal")
+WrongAnimal::WrongAnimal()
+	: _type("WrongAnimal")
 {
-	std::cout << BGRED << "Animal constructor called!" << RESET << std::endl;
-	return ;
+	std::cout << BGYELLOW << "WrongAnimal constructor called!" << RESET << std::endl;
+	return;
 }
 
-Animal::Animal(std::string _type_animal)
-	: _type(_type_animal) 
+WrongAnimal::WrongAnimal(std::string _type_animal)
+	: _type(_type_animal)
 {
-	std::cout << BGRED << "Animal constructor called!" << RESET << std::endl;
-	return ;
+	std::cout << BGYELLOW << "WrongAnimal constructor called!" << RESET << std::endl;
+	return;
 }
 
-
-Animal::Animal(const Animal &src)
+WrongAnimal::WrongAnimal(const WrongAnimal &src)
 {
-	std::cout << BGRED << "Animal copy constructor called!" << RESET << std::endl;
-	*this = src;
-	return ;
+	std::cout << BGYELLOW << "WrongAnimal  copy constructor called!" << RESET << std::endl;
+	this->_type.assign(src._type);
+	return;
 }
 
 
@@ -43,9 +42,9 @@ Animal::Animal(const Animal &src)
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Animal::~Animal()
+WrongAnimal::~WrongAnimal()
 {
-	std::cout << BGRED << "Animal destructor called!" << RESET << std::endl;
+	std::cout << BGYELLOW << "WrongAnimal destructor called!" << RESET << std::endl;
 }
 
 
@@ -53,7 +52,7 @@ Animal::~Animal()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Animal &Animal::operator=(Animal const &rhs)
+WrongAnimal &WrongAnimal::operator=(WrongAnimal const &rhs)
 {
 	if (this != &rhs)
 	{
@@ -62,11 +61,11 @@ Animal &Animal::operator=(Animal const &rhs)
 	return *this;
 }
 
-std::ostream& operator<<(std::ostream &output, Animal const &instance_animal)
+std::ostream& operator<<(std::ostream &output, WrongAnimal const &instance_wrong_animal)
 {
-    output << CYAN << "******************************" RESET <<  std::endl;
+	output << CYAN << "******************************" RESET <<  std::endl;
 	output << CYAN << "********   ANIMAL    *********" RESET <<  std::endl;
-    output << BLUE << "| TYPE : " << instance_animal.getType() << RESET << std::endl;
+    output << BLUE << "| TYPE : " << instance_wrong_animal.getType() << RESET << std::endl;
 	output << CYAN << "******************************" RESET <<  std::endl;
 	return (output);
 }
@@ -75,13 +74,13 @@ std::ostream& operator<<(std::ostream &output, Animal const &instance_animal)
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-void	Animal::makeSound(void) const {
-	std::cout << BGGREEN << "Animal making a sound yuoo!" << RESET << std::endl;	
+void	WrongAnimal::makeSound(void) const {
+	std::cout << BGGREEN << "WrongAnimal making a sound kokoko!" << RESET << std::endl;	
 }
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
-std::string	Animal::getType (void) const {
+std::string	WrongAnimal::getType (void) const {
 	return (this->_type);
 }

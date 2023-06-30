@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 23:32:33 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/28 23:37:29 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/06/29 20:20:02 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ Cat::~Cat()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-// Cat &				Cat::operator=( Cat const & rhs )
-// {
-// 	//if ( this != &rhs )
-// 	//{
-// 		//this->_value = rhs.getValue();
-// 	//}
-// 	return *this;
-// }
+Cat	&	Cat::operator=(Cat const &rhs)
+{
+	if (this != &rhs)
+	{
+		this->_type = rhs.getType();
+	}
+	return *this;
+}
 
 std::ostream& operator<<(std::ostream &output, Cat const &instance_cat)
 {

@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 23:31:12 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/29 20:19:46 by dnieto-c         ###   ########.fr       */
+/*   Created: 2023/06/28 23:47:08 by dnieto-c          #+#    #+#             */
+/*   Updated: 2023/06/28 23:53:11 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
 
 # include <iostream>
 # include <string>
-# include "Animal.hpp"
+# include "../includes/WrongAnimal.hpp"
 
-class Cat : public Animal
+class WrongCat : public WrongAnimal
 {
-
 	public:
-		Cat(void);
-		Cat(Cat const &src);
-		~Cat(void);
-		Cat &operator=(Cat const &rhs);
+		WrongCat(void);
+		WrongCat(WrongCat const &src);
+		~WrongCat();
+		WrongCat &operator=(WrongCat const &rhs);
 		void	makeSound(void) const;
 };
 
-std::ostream& operator<<(std::ostream &output, Cat const &instance_cat);
+std::ostream& operator<<(std::ostream &output, WrongCat const &instance_wrong_cat);
 
-#endif /* ************************************************************* CAT_H */
+#endif /* ******************************************************** WRONGCAT_H */

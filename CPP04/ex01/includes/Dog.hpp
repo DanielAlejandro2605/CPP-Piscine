@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 23:31:12 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/29 20:19:46 by dnieto-c         ###   ########.fr       */
+/*   Created: 2023/06/28 19:22:02 by dnieto-c          #+#    #+#             */
+/*   Updated: 2023/06/29 23:28:50 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-# define CAT_HPP
+#ifndef DOG_HPP
+# define DOG_HPP
 
 # include <iostream>
 # include <string>
 # include "Animal.hpp"
+# include "Brain.hpp"
 
-class Cat : public Animal
+class Dog : public Animal
 {
-
+	private:
+		Brain*	_brain;
 	public:
-		Cat(void);
-		Cat(Cat const &src);
-		~Cat(void);
-		Cat &operator=(Cat const &rhs);
+		Dog(void);
+		Dog(Dog const &src);
+		~Dog(void);
+		Dog &operator=(Dog const &rhs);
 		void	makeSound(void) const;
+		Brain	*getBrain(void) const;
 };
 
-std::ostream& operator<<(std::ostream &output, Cat const &instance_cat);
+std::ostream& operator<<(std::ostream &output, Dog const &instance_dog);
 
-#endif /* ************************************************************* CAT_H */
+#endif /* ************************************************************* DOG_H */

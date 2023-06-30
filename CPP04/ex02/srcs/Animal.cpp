@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:09:32 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/29 20:17:14 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/06/29 23:41:33 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,6 @@ std::ostream& operator<<(std::ostream &output, Animal const &instance_animal)
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-void	Animal::makeSound(void) const {
-	std::cout << BGGREEN << "Animal making a sound yuoo!" << RESET << std::endl;	
-}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

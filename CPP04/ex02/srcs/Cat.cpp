@@ -1,39 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/28 16:09:32 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/29 20:17:14 by dnieto-c         ###   ########.fr       */
+/*   Created: 2023/06/28 23:32:33 by dnieto-c          #+#    #+#             */
+/*   Updated: 2023/06/29 23:34:06 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Animal.hpp"
+#include "../includes/Cat.hpp"
 
 /*
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-Animal::Animal()
-	: _type("Animal")
+Cat::Cat() : Animal("Cat")
 {
-	std::cout << BGRED << "Animal constructor called!" << RESET << std::endl;
+	std::cout << BGCYAN << "Cat constructor called!" << RESET << std::endl;
+	this->_brain = new Brain();
 	return ;
 }
 
-Animal::Animal(std::string _type_animal)
-	: _type(_type_animal) 
+Cat::Cat(const Cat &src) : Animal(src)
 {
-	std::cout << BGRED << "Animal constructor called!" << RESET << std::endl;
-	return ;
-}
-
-
-Animal::Animal(const Animal &src)
-{
-	std::cout << BGRED << "Animal copy constructor called!" << RESET << std::endl;
+	std::cout << BGCYAN << "Cat copy constructor called!" << RESET << std::endl;
 	*this = src;
 	return ;
 }
@@ -43,9 +35,10 @@ Animal::Animal(const Animal &src)
 ** -------------------------------- DESTRUCTOR --------------------------------
 */
 
-Animal::~Animal()
+Cat::~Cat()
 {
-	std::cout << BGRED << "Animal destructor called!" << RESET << std::endl;
+	delete this->_brain;
+	std::cout << BGCYAN << "Cat destructor called!" << RESET << std::endl;
 }
 
 
@@ -53,35 +46,40 @@ Animal::~Animal()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-Animal &Animal::operator=(Animal const &rhs)
+Cat	&	Cat::operator=(Cat const &rhs)
 {
 	if (this != &rhs)
 	{
+		if (this->_brain)
+			delete this->_brain;
 		this->_type = rhs.getType();
+		this->_brain = new Brain(*rhs._brain);
 	}
 	return *this;
 }
 
-std::ostream& operator<<(std::ostream &output, Animal const &instance_animal)
+std::ostream& operator<<(std::ostream &output, Cat const &instance_cat)
 {
     output << CYAN << "******************************" RESET <<  std::endl;
 	output << CYAN << "********   ANIMAL    *********" RESET <<  std::endl;
-    output << BLUE << "| TYPE : " << instance_animal.getType() << RESET << std::endl;
+    output << BLUE << "| TYPE : " << instance_cat.getType() << RESET << std::endl;
 	output << CYAN << "******************************" RESET <<  std::endl;
 	return (output);
 }
-
-
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-void	Animal::makeSound(void) const {
-	std::cout << BGGREEN << "Animal making a sound yuoo!" << RESET << std::endl;	
+void	Cat::makeSound(void) const {
+	std::cout << BGGREEN << "Cat : meow meow meow!" << RESET << std::endl;	
+}
+ 
+Brain*	Cat::getBrain(void) const {
+	return (this->_brain);
 }
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
-std::string	Animal::getType (void) const {
-	return (this->_type);
-}
+
+
+/* ************************************************************************** */

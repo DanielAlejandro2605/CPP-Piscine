@@ -18,24 +18,29 @@
 int main (void)
 {
 	{
-		const Animal* meta = new Animal();
-		const Animal* j = new Dog();
-		const Animal* i = new Cat();
-		std::cout << j->getType() << " " << std::endl;
-		std::cout << i->getType() << " " << std::endl;
-		i->makeSound();
-		j->makeSound();
-		meta->makeSound();
-		delete j;
-		delete i;
-		delete meta;
+		Animal*	pets[6];
+		std::cout << BGYELLOW << "******************" << RESET << std::endl;
+		std::cout << BGYELLOW << "Filling the array!" << RESET << std::endl;
+		std::cout << BGYELLOW << "******************" << RESET << std::endl;
+		for (int i = 0; i < 6; i++){
+			if (i < 3)
+				pets[i] = new Dog();
+			else
+				pets[i] = new Cat();
+		}
+		std::cout << BGYELLOW << "******************" << RESET << std::endl;
+		std::cout << BGYELLOW << "Emptying the array!" << RESET << std::endl;
+		std::cout << BGYELLOW << "******************" << RESET << std::endl;
+		for (int i = 0; i < 6; i++){
+			delete pets[i];
+		}
 	}
 	{
-		std::cout << CYAN << "*******  Not virtual method ! *********" RESET <<  std::endl;
-		const WrongAnimal* i = new WrongCat();
-		std::cout << i->getType() << " " << std::endl;
-		i->makeSound();
-		delete i;
+		Dog	dog1;
+		dog1.getBrain()->setIdeas("Thinking about food!");
+		dog1.getBrain()->setIdeaIdx(1, "I want to scratch me!");
+		dog1.getBrain()->setIdeaIdx(3, "I want a cake!");
+		dog1.getBrain()->printFirstIdeas();
 	}
 	return (0);
 }
