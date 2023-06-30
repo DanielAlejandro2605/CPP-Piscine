@@ -12,7 +12,7 @@
 
 #include "../includes/Fixed.hpp"
 
-Fixed::Fixed(void) : fixed_point_number_value(0)
+Fixed::Fixed(void) : _fixed_point_number_value(0)
 {
     std::cout << "Execution of the default constructor of the Fixed Class!\n";
 }
@@ -28,7 +28,7 @@ Copy constructor
 Fixed::Fixed(const Fixed &original)
 {
     std::cout << "Execution of the copy constructor of the Fixed Class!\n";
-    this->fixed_point_number_value = original.fixed_point_number_value;
+    this->_fixed_point_number_value = original._fixed_point_number_value;
 }
 
 
@@ -53,7 +53,7 @@ Fixed& Fixed::operator=(const Fixed& original) {
     if (this == &original) {
 		return (*this);
     }
-	this->fixed_point_number_value = original.fixed_point_number_value;
+	this->_fixed_point_number_value = original._fixed_point_number_value;
     return (*this);
 }
 
@@ -71,10 +71,10 @@ or manipulation.
 int Fixed::getRawBits(void) const
 {
     std::cout << "getRawBits member function called\n";
-    return (this->fixed_point_number_value);
+    return (this->_fixed_point_number_value);
 }
 
 void Fixed::setRawBits(int const raw)
 {
-    this->fixed_point_number_value = raw;
+    this->_fixed_point_number_value = raw;
 }

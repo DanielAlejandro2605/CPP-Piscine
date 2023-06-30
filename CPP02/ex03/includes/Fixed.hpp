@@ -19,8 +19,8 @@
 class Fixed
 {
     private:
-		int					fixed_point_number_value;
-		static const int	fractional_bits = 8;
+		int					_fixed_point_number_value;
+		static const int	_fractional_bits = 8;
     public:
 		// Constructor and destructor functions
         Fixed(void);
@@ -53,30 +53,10 @@ class Fixed
 		Fixed&	operator--();
 		Fixed   operator--(int);
 		/*Static min and max*/
-		static Fixed&	min(Fixed& fixed_point_number_1, Fixed& fixed_point_number_2){
-			if (fixed_point_number_1 < fixed_point_number_2)
-				return (fixed_point_number_1);
-			else
-				return (fixed_point_number_2);
-		}
-		static const Fixed&	min(const Fixed& fixed_point_number_1, const Fixed& fixed_point_number_2){
-			if (fixed_point_number_1 < fixed_point_number_2)
-				return (fixed_point_number_1);
-			else
-				return (fixed_point_number_2);
-		}
-		static Fixed&	max(Fixed& fixed_point_number_1, Fixed& fixed_point_number_2){
-			if (fixed_point_number_1 > fixed_point_number_2)
-				return (fixed_point_number_1);
-			else
-				return (fixed_point_number_2);
-		}
-		static const Fixed&	max(const Fixed& fixed_point_number_1, const Fixed& fixed_point_number_2){
-			if (fixed_point_number_1 > fixed_point_number_2)
-				return (fixed_point_number_1);
-			else
-				return (fixed_point_number_2);
-		}
+		static Fixed&	min(Fixed& fixed_point_number_1, Fixed& fixed_point_number_2);
+		static const Fixed&	min(const Fixed& fixed_point_number_1, const Fixed& fixed_point_number_2);
+		static Fixed&	max(Fixed& fixed_point_number_1, Fixed& fixed_point_number_2);
+		static const Fixed&	max(const Fixed& fixed_point_number_1, const Fixed& fixed_point_number_2);
 };
 
 // Functions
