@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:26:31 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/30 19:59:33 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/07/03 11:51:38 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ MateriaSource &MateriaSource::operator=( MateriaSource const & rhs )
 ** --------------------------------- METHODS ----------------------------------
 */
 void MateriaSource::learnMateria(AMateria*m) {
+	std::cout << "LearnMateria called!" << std::endl;
 	if (m)
 	{
 		for (int i = 0; i < 4; i++)
@@ -93,9 +94,11 @@ void MateriaSource::learnMateria(AMateria*m) {
 }
 
 AMateria* MateriaSource::createMateria(std::string const &type) {
+	
 	for (int i = 0; i < 4; i++){
-		if (this->_materia[i] && this->_materia[i]->getType() == type)
+		if (this->_materia[i] && this->_materia[i]->getType() == type){
 			return (this->_materia[i]->clone());
+		}
 	}
 	return (NULL);
 }

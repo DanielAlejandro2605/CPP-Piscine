@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 20:05:06 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/30 22:32:45 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/07/03 11:47:48 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 */
 
 Cure::Cure()
-	: AMateria("cube")
+	: AMateria("cure")
 {
 	std::cout << BGYELLOW << "Cure constructor called!" << RESET << std::endl;
 }

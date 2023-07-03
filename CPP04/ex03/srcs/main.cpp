@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:15:07 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/30 22:33:15 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:36:43 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,14 @@ int main(void)
 	me->equip(tmp);
 	tmp = src->createMateria("cure");
 	me->equip(tmp);
+	me->printInventory();
 	ICharacter* bob = new Character("bob");
 	me->use(0, *bob);
 	me->use(1, *bob);
+	// tmp = src->createMateria("cure");
+	bob->equip(tmp);
+	bob->use(0, *me);
+	bob->printInventory();
 	delete bob;
 	delete me;
 	delete src;

@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:30:58 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/30 17:52:15 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:37:39 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,14 @@ Character::~Character()
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->_inventory[i] != NULL)
+		{
 			delete this->_inventory[i];
+			this->_inventory[i] = NULL;
+		}
+		else
+		{
+			std::cout << "Here" << std::endl;
+		}
 	}
 }
 
@@ -94,7 +101,9 @@ void	Character::equip(AMateria* m) {
 				return ;
 			}
 		}
-		std::cout << RED << "They equip Materias of " << this->_name << " is full!" << RESET << std::endl; 
+		std::cout << RED << "They equip Materias of " << this->_name << " is full!" << RESET << std::endl;
+		delete m;
+		return ; 
 	}
 	std::cout << RED << "Cannot equip NULL Materias!" << RESET << std::endl;
 	return ;
@@ -116,7 +125,7 @@ void	Character::use(int idx, ICharacter& target) {
 		if (this->_inventory[idx])
 			this->_inventory[idx]->use(target);
 		else
-			std::cout << RED << "Not Materia at the slot # " << idx << "!" << RESET << std::endl;
+			std::cout << RED << this->_name << ": Not Materia at the slot # " << idx << "!" << RESET << std::endl;
 	}
 	else
 		std::cout << RED << "REMAIN: Equip of " << this->_name << " has only 4 slots!" << RESET << std::endl; 

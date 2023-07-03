@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 13:01:36 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/29 19:35:01 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/07/03 11:43:47 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ class ICharacter
 		virtual void equip(AMateria* m) = 0;
 		virtual void unequip(int idx) = 0;
 		virtual void use(int idx, ICharacter& target) = 0;
+		/*Additional methods*/
+		virtual	void printInventory(void) const = 0;
 };
 
 #endif /* ****************************************************** ICHARACTER_H */
