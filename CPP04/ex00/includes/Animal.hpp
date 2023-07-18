@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/28 16:09:17 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/28 23:14:10 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/07/05 17:48:17 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,12 @@
 #define BGMAGENTA "\033[45m"
 #define BGCYAN "\033[46m"
 #define BGWHITE "\033[47m"
+
+/*La declaración del destructor virtual es importante cuando se trabaja con herencia
+y se espera que las clases derivadas tengan su propio comportamiento de limpieza.
+Al hacer que el destructor sea virtual, se garantiza que se llame correctamente al
+destructor de la clase derivada cuando se destruye un objeto de la clase base a través
+de un puntero de la clase base.*/
 
 class Animal
 {

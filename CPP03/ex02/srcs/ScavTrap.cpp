@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 19:48:08 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/26 21:15:42 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/07/03 16:26:18 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,6 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name) {
 
 ScavTrap::ScavTrap(const ScavTrap &original) : ClapTrap(original) {
     std::cout << BGYELLOW << "ScavTrap inherited copy constructor from ClapTrap called!" << RESET << std::endl;
-    this->_name.assign(original._name);
-    this->_hit_points = original._hit_points;
-    this->_energy_points = original._energy_points;
-    this->_attack_damage = original._attack_damage;
 }
 
 ScavTrap::~ScavTrap(){

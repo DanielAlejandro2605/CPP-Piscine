@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/22 16:20:16 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/07/03 16:19:45 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/07/03 16:20:57 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ ClapTrap::ClapTrap(std::string name_value)
 
 ClapTrap::ClapTrap(const ClapTrap &original){
     std::cout << BGCYAN "ClapTrap copy constructor called!" RESET << std::endl;
-    this->_name.assign(original._name);
-    this->_hit_points = original._hit_points;
-    this->_energy_points = original._energy_points;
-    this->_attack_damage = original._attack_damage;
+    *this = original;
 }
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &original){

@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:26:31 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/07/03 11:51:38 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/07/05 17:40:40 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,10 @@ MateriaSource &MateriaSource::operator=( MateriaSource const & rhs )
 	return *this;
 }
 
-// std::ostream &			operator<<( std::ostream & o, MateriaSource const & i )
-// {
-// 	//o << "Value = " << i.getValue();
-// 	return o;
-// }
-
-
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
 void MateriaSource::learnMateria(AMateria*m) {
-	std::cout << "LearnMateria called!" << std::endl;
 	if (m)
 	{
 		for (int i = 0; i < 4; i++)
@@ -87,7 +79,9 @@ void MateriaSource::learnMateria(AMateria*m) {
 				return ;
 			}
 		}
-		std::cout << RED << "MateriaSource slots are full!" << RESET << std::endl; 
+		std::cout << RED << "MateriaSource slots are full!" << RESET << std::endl;
+		delete m;
+		return ;
 	}
 	std::cout << RED << "Cannot equip NULL Materias!" << RESET << std::endl;
 	return ;

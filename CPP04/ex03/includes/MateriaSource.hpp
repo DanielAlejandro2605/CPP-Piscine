@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/30 17:26:39 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/30 19:49:13 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/07/05 17:41:01 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,5 @@ class MateriaSource : public IMateriaSource
 	private:
 		AMateria*	_materia[4];
 };
-
-// std::ostream &			operator<<( std::ostream & o, MateriaSource const & i );
 
 #endif /* *************************************************** MATERIASOURCE_H */

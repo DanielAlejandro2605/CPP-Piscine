@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 15:35:40 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/26 21:16:22 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/07/03 16:25:32 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,6 @@ FragTrap::FragTrap(std::string name) : ClapTrap(name) {
 
 FragTrap::FragTrap(const FragTrap &original) : ClapTrap(original) {
 	std::cout << BGBLUE << "FragTrap inherited copy constructor from ClapTrap called!" << RESET << std::endl;	
-    this->_name.assign(original._name);
-    this->_hit_points = original._hit_points;
-    this->_energy_points = original._energy_points;
-    this->_attack_damage = original._attack_damage;
 }
 
 

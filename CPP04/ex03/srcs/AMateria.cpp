@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/29 19:30:48 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/06/29 19:36:04 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/07/05 17:09:26 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@
 AMateria::AMateria(std::string const &type)
 	: _type(type)
 {
-	std::cout << GREEN << "AMateria constructor called!" << RESET << std::endl;
+	std::cout << WHITE << "AMateria constructor called!" << RESET << std::endl;
 	return ;
 }
 
 AMateria::AMateria(const AMateria &src)
 	: _type(src._type)
 {
-	std::cout << GREEN << "AMateria copy constructor called!" << RESET << std::endl;
+	std::cout << WHITE << "AMateria copy constructor called!" << RESET << std::endl;
 	return ;
 }
 
@@ -37,7 +37,7 @@ AMateria::AMateria(const AMateria &src)
 
 AMateria::~AMateria()
 {
-	std::cout << GREEN << "AMateria destructor called!" << RESET << std::endl;
+	std::cout << WHITE << "AMateria destructor called!" << RESET << std::endl;
 	return ;
 }
 

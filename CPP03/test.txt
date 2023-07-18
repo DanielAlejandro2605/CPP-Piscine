@@ -1,0 +1,11 @@
+cat:Makefile:outfile
+
+cmd**[0]    -> exit
+cmd**[1]    -> -e
+cmd**[2]    -> -e
+infile**[0] -> Makefile
+        [1] -> file1
+        [2] -> file2
+outfile**[0] -> outfile
+         [1] -> outfile2
+
