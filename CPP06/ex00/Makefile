@@ -1,4 +1,4 @@
-NAME					=	form
+NAME					=	convert
 CC						=	c++
 FLAGS					=	-Wall -Wextra -Werror -std=c++98
 RM						=	rm -rf
@@ -8,7 +8,7 @@ SRC_PATH = srcs/
 OBJ_PATH = objs/
 HEADER_PATH = includes/
 ### All sources ###
-SOURCES		=	main.cpp Bureaucrat.cpp Form.cpp
+SOURCES		=	main.cpp ScalarConverter.cpp
 ### All objects ###
 
 SRCS = $(addprefix $(SRC_PATH),$(SOURCES))
@@ -53,7 +53,7 @@ header:
 
 define HEADER_PROJECT
 
-CPP MODULE 05/EX01
+CPP MODULE 06/EX01
 
 endef
 export HEADER_PROJECT
