@@ -4,7 +4,7 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-ScalarConverter::ScalarConverter(std::string arg) : _arg(arg)
+ScalarConverter::ScalarConverter()
 {
 	return ;
 }
@@ -32,10 +32,7 @@ ScalarConverter::~ScalarConverter()
 
 ScalarConverter &ScalarConverter::operator=(ScalarConverter const &rhs)
 {
-	if (this != &rhs)
-	{
-		this->_arg = rhs.getArg();
-	}
+	(void)rhs;
 	return *this;
 }
 
@@ -50,19 +47,67 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &rhs)
 ** --------------------------------- METHODS ----------------------------------
 */
 
-void	ScalarConverter::convert() {
-	if (this->_arg.empty())
+void	ScalarConverter::convert(const std::string	&arg){
+	long long 	num_long;
+	double		num_double;
+	char		*delim_long_ptr;
+	char		*delim_double_ptr;
+
+	if (arg.empty())
 	{
-		std::cout << "It's empty" << std::endl;
 		throw ScalarConverter::InvalidInput();
 	}
+	else if (arg.size() == 1)
+	{
+		if (isdigit(arg.at(0)))
+		{
+			this->_int_value = static_cast<int>(strtol(arg.c_str(), NULL, 10));
+			this->_type = INTEGER;
+		}
+		else
+		{
+			this->_char_value = isdigit(arg.at(0));
+			this->_type = CHARACTER;
+		}
+	}
+	else
+	{
+		num_long= strtoll(arg.c_str(), delim_long_ptr, 10);
+		num_double = str
+		if ((num == LLONG_MAX || num == LLONG_MIN) && errno == ERANGE) {
+			std::cout << "El número está fuera del rango válido para long long int." << std::endl;
+		} else {
+			std::cout << "Número convertido: " << num << std::endl;
+		}
+	}
 }
+
+// bool	ScalarConverter::IsPseudoLiteral(const std::string &arg) {
+// 	std::string	pseudo_literal[6] = {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
+// 	for (int i = 0; i < 6; i++)
+// 	{
+// 		std::cout << (arg.find(pseudo_literal[i], 0)) << std::endl;
+// 	}
+// 	return (true);
+// }
+
+// bool	ScalarConverter::IsChar(const std::string	&arg)
+// {
+// 	if (arg.size() == 1)
+// 	{
+// 		std::cout << "oui" << std::endl;
+// 		std::cout << (arg[0] > 25) << std::endl;
+// 	}
+// 	std::cout << arg.size() << std::endl;
+// 	return (true);
+// }
+
 /*
 ** --------------------------------- ACCESSOR ---------------------------------
 */
-std::string ScalarConverter::getArg(void) const
-{
-	return (this->_arg);
-}
+// std::string ScalarConverter::getArg(void) const
+// {
+// 	return (this->_arg);
+// }
 
 /* ************************************************************************** */

@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:23:41 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/07/27 14:59:03 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/07/28 16:54:12 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,34 @@
 
 # include <iostream>
 # include <string>
-
+# include <cstdlib>
+# include <climits>
+# include <cerrno>
+# include <ctype.h>
 class ScalarConverter
 {
 	private:
-		std::string	_arg;
-		// char				_char_value;
-		// int					_int_value;
-		// float				_float_value;
-		// double				_double_value;
-	public:
-		ScalarConverter(const std::string arg);
+		static char			_char_value;
+		static int			_int_value;
+		static float		_float_value;
+		static double		_double_value;
+		enum scalarType 	{CHARACTER, INTEGER, FLOAT, DOUBLE} _type;
+
+		/*Orthodox Canonical Form*/
+		ScalarConverter(void);
 		ScalarConverter(ScalarConverter const &src);
 		~ScalarConverter();
 		ScalarConverter &operator=(ScalarConverter const &rhs);
+		
 		/*Methods*/
-		void		convert();
+		static bool	IsPseudoLiteral(const std::string &arg);
+		static bool	IsChar(const std::string	&arg);
+		// static bool	IsInRange(long long int num);
+	public:
+		/*Methods*/
+		static void	convert(const std::string	&arg);
 		/*Accessors*/
-		std::string	getArg(void) const;
+		// std::string	getArg(void) const;
 		
 		/*Exceptions*/
 		class InvalidInput : public std::exception
