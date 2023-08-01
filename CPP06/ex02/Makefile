@@ -1,4 +1,4 @@
-NAME					=	convert
+NAME					=	identify_real_type
 CC						=	c++
 FLAGS					=	-Wall -Wextra -Werror -std=c++98
 RM						=	rm -rf
@@ -8,7 +8,7 @@ SRC_PATH = srcs/
 OBJ_PATH = objs/
 HEADER_PATH = includes/
 ### All sources ###
-SOURCES		=	main.cpp ScalarConverter.cpp
+SOURCES		=	main.cpp A.cpp B.cpp C.cpp
 ### All objects ###
 
 SRCS = $(addprefix $(SRC_PATH),$(SOURCES))
@@ -53,7 +53,7 @@ header:
 
 define HEADER_PROJECT
 
-CPP MODULE 06/EX00
+CPP MODULE 06/EX02
 
 endef
 export HEADER_PROJECT

@@ -48,30 +48,8 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &rhs)
 
 void	ScalarConverter::convert(const std::string	&arg){
 	ScalarConverter::setType(arg);
-	// switch (ScalarConverter::_type)
-	// {
-	// 	case CHARACTER:
-	// 		std::cout << "It's character" << std::endl;
-	// 		std::cout << ScalarConverter::_char_value << std::endl;
-	// 		break ;
-	// 	case INTEGER:
-	// 		std::cout << "It's int" << std::endl;
-	// 		std::cout << ScalarConverter::_int_value << std::endl;
-	// 		break ;
-	// 	case FLOAT:
-	// 		std::cout << "It's float" << std::endl;
-	// 		std::cout << ScalarConverter::_float_value << std::endl;
-	// 		break ;
-	// 	case DOUBLE:
-	// 		std::cout << "It's double" << std::endl;
-	// 		std::cout << ScalarConverter::_double_value << std::endl;
-	// 		break ;
-	// 	case UNDEFINED:
-	// 		std::cout << "It's undefined" << std::endl;
-	// 		break ;
-	// }
 	try {
-		std::cout << "char: " << ScalarConverter::toChar() << std::endl;
+		std::cout << "char: '" << ScalarConverter::toChar() << "'" << std::endl;
 	}
 	catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
@@ -83,13 +61,25 @@ void	ScalarConverter::convert(const std::string	&arg){
 		std::cerr << e.what() << std::endl;
 	}
 	try {
-		std::cout << "float: " << ScalarConverter::toFloat() << "f" << std::endl;
+		float f = ScalarConverter::toFloat();
+		double p, fraction;
+    	fraction = modf(f, &p);
+		if (fraction == 0)
+			std::cout << "float: " << f << ".0f" << std::endl;
+		else
+			std::cout << "float: " << f << "f" << std::endl;
 	}
 	catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
 	try {
-		std::cout << "double: " << ScalarConverter::toDouble() << std::endl;
+		double d = ScalarConverter::toDouble();
+		double p, fraction;
+    	fraction = modf(d, &p);
+		if (fraction == 0)
+			std::cout << "double: " << d << ".0" << std::endl;
+		else
+			std::cout << "double: " << d << std::endl;
 	}
 	catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
@@ -143,7 +133,9 @@ void	ScalarConverter::setType(const std::string	&arg) {
 			{
 				if (*endptr_double == 'f' && *(endptr_double + 1) == '\0')
 				{
+					// std::cout << num_double << std::endl;
 					ScalarConverter::_float_value = static_cast<float>(num_double);
+					// std::cout << ScalarConverter::_float_value << std::endl;
 					ScalarConverter::_type = FLOAT;
 				}
 				else if (*endptr_double == '\0')

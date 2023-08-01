@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 13:23:41 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/07/31 20:26:17 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/01 10:21:56 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <cerrno>
 # include <ctype.h>
 # include <cmath>
+# include <sstream>
 class ScalarConverter
 {
 	private:
