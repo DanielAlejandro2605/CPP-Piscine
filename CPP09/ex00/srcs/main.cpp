@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 16:12:35 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/16 16:18:32 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/17 17:18:17 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 int main(int argc, char *argv[])
 {
-    (void)argc;
-    (void)argv;
-    try {
-        BitcoinExchange var;        
-    }
-   catch(const std::exception& e)
-    {
-        std::cerr << e.what() << std::endl;
-    }
+    if (argc == 2)
+	{
+		try {
+        	BitcoinExchange btc;
+			btc.exchange(argv[1]);
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << std::endl;
+		}
+	}
     return (0);
 }

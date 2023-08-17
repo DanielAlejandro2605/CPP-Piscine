@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 17:08:58 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/07/27 11:21:04 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:32:54 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,8 @@ void			Bureaucrat::executeForm(AForm const &form)
 {
 	try
 	{
+		std::cout << this->getName() << " try executed " << form.getName() << std::endl;
 		form.action(*this);
-		std::cout << this->getName() << " executed " << form.getName() << std::endl;
 	}
 	catch(const std::exception& e)
 	{

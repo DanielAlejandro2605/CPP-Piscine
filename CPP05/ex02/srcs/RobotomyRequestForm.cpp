@@ -39,8 +39,7 @@ RobotomyRequestForm &				RobotomyRequestForm::operator=( RobotomyRequestForm con
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
-/*informs that <target> has been robotomized
-successfully 50% of the time. Otherwise, informs that the robotomy failed.*/	
+	
 void	RobotomyRequestForm::action(Bureaucrat const &executor) const {
 	this->AForm::execute(executor);
 	std::cout << BGYELLOW << "Making some drilling noises" << RESET << std::endl;

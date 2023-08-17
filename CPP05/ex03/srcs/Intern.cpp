@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 11:36:32 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/07/27 12:01:20 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:40:17 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,43 +37,37 @@ Intern::~Intern()
 */
 AForm	*Intern::makeForm(const std::string &name_form, const std::string &target_form) 
 {
-	AForm	*form;
-
-	if (name_form.compare("shrubbery creation") == 0)
+	AForm		*form;
+	std::string	known_forms[] = {"shrubbery creation", "robotomy request", "presidential pardon"};
+	int		c;
+	
+	for (c = 0; c < 3; c++)
 	{
-		try
-		{ 
-			form = new ShrubberyCreationForm(target_form); 
-		} 
-		catch (std::bad_alloc & exception) 
-		{ 
-			std::cerr << "bad_alloc detected: " << exception.what(); 
-		}
+		if (name_form.compare(known_forms[c]) == 0)
+			break ;
 	}
-	else if (name_form.compare("robotomy request") == 0)
+	try 
 	{
-		try
-		{ 
-			form = new RobotomyRequestForm(target_form); 
-		} 
-		catch (std::bad_alloc & exception) 
-		{ 
-			std::cerr << "bad_alloc detected: " << exception.what(); 
-		}
+		switch (c)
+		{
+			case 0:
+				form = new ShrubberyCreationForm(target_form);  
+				break;
+			case 1:
+				form = new RobotomyRequestForm(target_form); 
+				break;
+			case 2:
+				form = new PresidentialPardonForm(target_form); 
+				break ;
+			default:
+				throw Intern::InvalidFormIntern();
+		}	
 	}
-	else if (name_form.compare("presidential pardon") == 0)
-	{
-		try
-		{ 
-			form = new PresidentialPardonForm(target_form); 
-		} 
-		catch (std::bad_alloc & exception) 
-		{ 
-			std::cerr << "bad_alloc detected: " << exception.what(); 
-		}
+	catch (std::bad_alloc & exception) 
+	{ 
+		std::cerr << "bad_alloc detected: " << exception.what();
+		return (NULL); 
 	}
-	else
-		throw Intern::InvalidFormIntern();
 	std::cout << BGGREEN << "Intern creates " << name_form << RESET << std::endl;
 	return (form);
 }

@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:38:07 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/07/27 11:19:17 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:17:00 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void				AForm::beSigned(const Bureaucrat &bureaucrat) {
 	}
 	else
 	{
-		throw AForm::GradeTooLowException();
+		throw AForm::GradeTooLowExceptionSigned();
 	}
 }
 
@@ -86,7 +86,7 @@ void	AForm::execute(Bureaucrat const &executor) const {
 	if (this->isSigned() == false)
 		throw AForm::FormIsNotSignedException();
 	else if (executor.getGrade() > this->getGradeExecuted())
-		throw AForm::GradeTooLowException();
+		throw AForm::GradeTooLowExceptionExecuted();
 }
 
 /*

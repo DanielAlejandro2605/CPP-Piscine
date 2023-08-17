@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/19 13:35:25 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/07/19 16:38:42 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:37:00 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	ShrubberyCreationForm::action(Bureaucrat const &executor) const {
 		outfile << "                           ;%@@@@%::;."           << std::endl;
 		outfile << "                          ;%@@@@%%:;;;."  << std::endl;
 		outfile << "                      ...;%@@@@@%%:;;;;,.." << std::endl;
+		std::cout << GREEN << "ASCII trees writed in file" << RESET << std::endl;
 	} catch (const std::ofstream::failure& ex) {
 		std::cerr << "Error opening the file: " << ex.what() << std::endl;
 	}

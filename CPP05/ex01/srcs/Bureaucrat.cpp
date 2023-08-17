@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 17:08:58 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/07/18 22:07:26 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:02:52 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ void			Bureaucrat::signForm(Form &form)
 	try
 	{
 		form.beSigned(*this);
-		std::cout << this->getName() << " signed " << form.getName() << std::endl;
+		std::cout << YELLOW << this->getName() << " signed " << form.getName() << RESET << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		std::cerr << this->getName() << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+		std::cerr << BGRED << this->getName() << " couldn't sign " << form.getName() << " because " << e.what() << RESET << std::endl;
 	}
 }
 

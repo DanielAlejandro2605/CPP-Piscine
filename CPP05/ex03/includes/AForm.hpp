@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/18 18:38:09 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/07/27 11:19:38 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/17 11:15:58 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ class AForm
 			public:
 				const char* what() const throw()
 				{
-					return ("Form: Grade too high to be signed!");
+					return ("Form: Grade too high to be initialized!");
 				}
 		};
 		class GradeTooLowException : public std::exception
@@ -60,7 +60,23 @@ class AForm
 			public:
 				const char* what() const throw()
 				{
+					return ("Form: Grade too low to be initialized!");
+				}
+		};
+		class GradeTooLowExceptionSigned : public std::exception
+		{
+			public:
+				const char* what() const throw()
+				{
 					return ("Form: Grade too low to be signed!");
+				}
+		};
+		class GradeTooLowExceptionExecuted : public std::exception
+		{
+			public:
+				const char* what() const throw()
+				{
+					return ("Form: Grade too low to be executed!");
 				}
 		};
 		class FormIsAlreadySignedException : public std::exception
