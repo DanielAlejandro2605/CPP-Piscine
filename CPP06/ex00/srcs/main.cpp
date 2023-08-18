@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/27 12:59:07 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/07/31 16:50:39 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/18 11:24:51 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ int main(int argc, char *argv[])
         {
             std::cerr << e.what() << std::endl;
         }
+    }
+    else
+    {
+        std::cerr << "An argument is necessary." << std::endl;
     }
     return (0);
 }

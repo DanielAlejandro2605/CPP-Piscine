@@ -49,7 +49,7 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &rhs)
 void	ScalarConverter::convert(const std::string	&arg){
 	ScalarConverter::setType(arg);
 	try {
-		std::cout << "char: '" << ScalarConverter::toChar() << "'" << std::endl;
+		std::cout << "char: " << ScalarConverter::toChar() << std::endl;
 	}
 	catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
@@ -121,7 +121,7 @@ void	ScalarConverter::setType(const std::string	&arg) {
 			{
 				if (num_long > std::numeric_limits<int>::max() || num_long < std::numeric_limits<int>::min())
 				{
-					throw ScalarConverter::InvalidInput();
+					throw ScalarConverter::OverflowException();
 				}
 				else
 				{
@@ -133,9 +133,7 @@ void	ScalarConverter::setType(const std::string	&arg) {
 			{
 				if (*endptr_double == 'f' && *(endptr_double + 1) == '\0')
 				{
-					// std::cout << num_double << std::endl;
 					ScalarConverter::_float_value = static_cast<float>(num_double);
-					// std::cout << ScalarConverter::_float_value << std::endl;
 					ScalarConverter::_type = FLOAT;
 				}
 				else if (*endptr_double == '\0')

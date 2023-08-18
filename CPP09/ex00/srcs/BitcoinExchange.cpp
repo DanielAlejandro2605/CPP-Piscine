@@ -6,15 +6,15 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:15 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/17 17:56:30 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/18 18:00:46 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 
-// /*
-// ** ------------------------------- CONSTRUCTOR --------------------------------
-// */
+/*
+** ------------------------------- CONSTRUCTOR --------------------------------
+*/
 
 BitcoinExchange::BitcoinExchange()
 {
@@ -29,18 +29,18 @@ BitcoinExchange::BitcoinExchange()
 // }
 
 
-// /*
-// ** -------------------------------- DESTRUCTOR --------------------------------
-// */
+/*
+** -------------------------------- DESTRUCTOR --------------------------------
+*/
 
 BitcoinExchange::~BitcoinExchange()
 {
 }
 
 
-// /*
-// ** --------------------------------- OVERLOAD ---------------------------------
-// */
+/*
+** --------------------------------- OVERLOAD ---------------------------------
+*/
 
 // BitcoinExchange &				BitcoinExchange::operator=( BitcoinExchange const & rhs )
 // {
@@ -64,24 +64,84 @@ BitcoinExchange::~BitcoinExchange()
 
 void	BitcoinExchange::exchange(const std::string &input_file)
 {
+	int	i;
+
 	this->_arg_infile.open(input_file.c_str(), std::fstream::in);
 	if (this->_arg_infile.fail())
 		throw BitcoinExchange::ErrorOpenArgFile();
+	i = 0;
 	while (this->_arg_infile.eof() == 0)
     {
-        std::getline(this->_db_infile, this->_buffer);
-		try
+        std::getline(this->_arg_infile, this->_buffer);
+		if (i == 0)
 		{
-			exchangeLine(this->_buffer);
+			if (this->_buffer.compare("date | value") != 0)
+				throw BitcoinExchange::ErrorInvalidArgFile();
 		}
-		catch(const std::exception& e)
+		else
 		{
-			std::cerr << e.what() << std::endl;
+			try
+			{
+				exchangeLine(this->_buffer, "0123456789-|. ", '|');
+			}
+			catch(const std::exception& e)
+			{
+				std::cerr << e.what() << std::endl;
+			}
 		}
-        i++;
+		i++;
     }
 }
 
+void	BitcoinExchange::exchangeLine(const std::string &line, std::string set, char delim)
+{
+	std::string	line_trim;
+	std::string	date;
+	std::string	aux_date;
+	std::string btc_char_representation;
+	double		btc_exchange;
+	size_t		sep;
+	char		*endptr;
+
+	if (!(line.find_first_not_of(set) == std::string::npos) || (line[10] != ' ' || line[12] != ' '))
+	{
+		std::cout << "Error: bad input => " << line << std::endl;	
+		return ;
+	}
+	/*Removing quotes for check*/
+	line_trim.assign(line);
+	removeSpaces(line_trim);
+	/*Getting date from string line*/
+	date = line_trim.substr(0, line_trim.find(delim));
+	sep = line.find(delim); 
+	if ((sep == std::string::npos) || (sep == (line.length() - 2) && line[sep + 1] == ' '))
+	{
+		std::cout << "Error: value not provided => " << line << std::endl;
+	}
+	/*Checking date*/
+	if ((checkDateFormat(date) == false))
+	{
+		std::cout << "Error: bad input => " << date << std::endl;
+	}
+	/*Checking amount to convert*/
+	btc_char_representation = line.substr(line.find(delim) + 1);
+	btc_exchange = std::strtod(btc_char_representation.c_str(), &endptr);
+	if (btc_exchange < 0)
+		std::cout << "Error: not a positive number." << std::endl;
+	else if (btc_exchange > std::numeric_limits<int>::max())
+		std::cout << "Error: too large a number." << std::endl;
+}
+
+void	BitcoinExchange::exchangeValue(std::string &date, float amount)
+{
+	this->_it_find = this->_map.find(date);
+	if (this->_it_find != this->_map.end()) {
+        std::cout << "Valor encontrado: " << it->second << std::endl;
+    } else {
+        std::cout << "Valor no encontrado." << std::endl;
+    }
+	std::cout << amount
+}
 
 void	BitcoinExchange::loadDataBase(void)
 {
@@ -94,7 +154,7 @@ void	BitcoinExchange::loadDataBase(void)
         if (this->_buffer.empty())
             break;
         if (i != 0)
-			addLineDB(this->_buffer, 0);
+			this->_map.insert(addLineDB(this->_buffer, "0123456789-,.", ','));
         else
         {
             if (this->_buffer.compare("date,exchange_rate") != 0)
@@ -104,63 +164,32 @@ void	BitcoinExchange::loadDataBase(void)
     }
 }
 
-void	BitcoinExchange::addLineDB(const std::string &line, int c)
+string_float_pair BitcoinExchange::addLineDB(const std::string &line, std::string set, char delim)
 {
-    std::string	sets[2] = {"0123456789-,.", "0123456789 |.-"};
-	char		delim;
-
-	/*Check set charaters*/
-	switch (c)
-	{
-		case 0:
-			if (!(line.find_first_not_of(sets[c]) == std::string::npos))
-				throw BitcoinExchange::ErrorInvalidDB();
-			delim = ',';
-			break;
-		case 1:
-			// if (!(line.find_first_not_of(sets[c]) == std::string::npos))
-			// 	throw;
-			delim = '|';
-			break;
-	}
-	checkLineFile(line, c, delim);
-}
-
-void	BitcoinExchange::checkLineFile(const std::string &line, int c, char delim)
-{
-	std::string	line_trim;
 	std::string	date;
-	std::string	aux_date;
 	std::string btc_char_representation;
 	double		btc_exchange;
-	size_t		comma;
+	size_t		sep;
 	char		*endptr;
-	
-	line_trim = trim(line);
+
+	/*Check correct set characters*/
+	if (!(line.find_first_not_of(set) == std::string::npos))
+		throw BitcoinExchange::ErrorInvalidDB();
 	/*Getting value from string line*/
-	date = line_trim.substr(0, line_trim.find(delim));
-	aux_date = date;
-	comma = line_trim.find(delim); 
-	if ((comma == std::string::npos) || comma == (line_trim.length() - 1))
+	date = line.substr(0, line.find(delim));
+	sep = line.find(delim); 
+	if ((sep == std::string::npos) || sep == (line.length() - 1))
 	{
-		if (c == 0)
-			BitcoinExchange::ErrorInvalidDB();
+		BitcoinExchange::ErrorInvalidDB();
 	}
-	btc_char_representation = line_trim.substr(line_trim.find(delim) + 1);
+	btc_char_representation = line.substr(line.find(delim) + 1);
 	btc_exchange = std::strtod(btc_char_representation.c_str(), &endptr);
 	/*Checking date*/
-	if (checkDateFormat(aux_date) == false)
+	if ((checkDateFormat(date) == false) || (!(*endptr == '\0' || *endptr == '\n')))
 	{
-		if (c == 0)
-			throw BitcoinExchange::ErrorInvalidDB();
-		
+		throw BitcoinExchange::ErrorInvalidDB();
 	}
-	if (!(*endptr == '\0' || *endptr == '\n'))
-	{
-		if (c == 0)
-			throw BitcoinExchange::ErrorInvalidDB();
-	}
-	this->_map.insert(std::make_pair(date, btc_exchange));
+	return (std::make_pair(date, btc_exchange));
 }
 
 /*
@@ -169,6 +198,7 @@ void	BitcoinExchange::checkLineFile(const std::string &line, int c, char delim)
 
 bool		BitcoinExchange::checkDateFormat(std::string &l)
 {
+	std::string	aux_date;
 	bool		valid_date;
 	size_t		pos;
 	long int	i;
@@ -176,16 +206,17 @@ bool		BitcoinExchange::checkDateFormat(std::string &l)
 	std::string token;
 	std::string	delimiter;
 
+	aux_date = l;
 	valid_date = true;
-	if (l.length() > 10 || (l[4] != '-' || l[7] != '-'))
+	if (aux_date.length() > 10 || (aux_date[4] != '-' || aux_date[7] != '-'))
 		valid_date = false;
 	pos = 0;
 	i = 0;
 	delimiter = "-";
-	while ((pos = l.find("-")) != std::string::npos || i < 3) {
-		token = l.substr(0, pos);
+	while ((pos = aux_date.find("-")) != std::string::npos || i < 3) {
+		token = aux_date.substr(0, pos);
 		n = std::strtol(token.c_str(), NULL, 10);
-		l.erase(0, pos + delimiter.length());
+		aux_date.erase(0, pos + delimiter.length());
 		switch (i)
 		{
 			case 0:
@@ -215,7 +246,18 @@ std::string BitcoinExchange::trim(const std::string& str) {
     return str.substr(first, (last - first + 1));
 }
 
+void BitcoinExchange::removeSpaces(std::string &str) {
+    size_t pos = 0;
+    size_t length = str.length();
 
+    for (size_t i = 0; i < length; ++i) {
+        if (str[i] != ' ') {
+            str[pos] = str[i];
+            ++pos;
+        }
+    }
+    str.resize(pos);
+}
 /*
 ** --------------------------------- PRINT ---------------------------------
 */
