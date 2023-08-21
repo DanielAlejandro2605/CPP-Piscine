@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:15 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/18 18:00:46 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/21 18:19:04 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,30 +117,40 @@ void	BitcoinExchange::exchangeLine(const std::string &line, std::string set, cha
 	if ((sep == std::string::npos) || (sep == (line.length() - 2) && line[sep + 1] == ' '))
 	{
 		std::cout << "Error: value not provided => " << line << std::endl;
+		return;
 	}
 	/*Checking date*/
 	if ((checkDateFormat(date) == false))
 	{
 		std::cout << "Error: bad input => " << date << std::endl;
+		return;
 	}
 	/*Checking amount to convert*/
 	btc_char_representation = line.substr(line.find(delim) + 1);
 	btc_exchange = std::strtod(btc_char_representation.c_str(), &endptr);
 	if (btc_exchange < 0)
+	{
 		std::cout << "Error: not a positive number." << std::endl;
+		return;
+	}
 	else if (btc_exchange > std::numeric_limits<int>::max())
+	{
 		std::cout << "Error: too large a number." << std::endl;
+		return;	
+	}
+	exchangeValue(date, btc_exchange);
+	// std::cout << date << std::endl;
+	
 }
 
+/*Returns an iterator pointing to the first element that is not less than (i.e. greater or equal to) key.*/
 void	BitcoinExchange::exchangeValue(std::string &date, float amount)
 {
-	this->_it_find = this->_map.find(date);
-	if (this->_it_find != this->_map.end()) {
-        std::cout << "Valor encontrado: " << it->second << std::endl;
-    } else {
-        std::cout << "Valor no encontrado." << std::endl;
-    }
-	std::cout << amount
+	this->_it_find = this->_map.lower_bound(date);
+	if (this->_it_find != this->_map.begin() && (this->_it_find == this->_map.end() || this->_it_find->first != date)) {
+		--this->_it_find;
+	}
+	std::cout << date << " => " << amount << " = " << (amount * this->_it_find->second) << std::endl;
 }
 
 void	BitcoinExchange::loadDataBase(void)
@@ -235,15 +245,6 @@ bool		BitcoinExchange::checkDateFormat(std::string &l)
 		i++;
 	}
 	return (valid_date);
-}
-
-std::string BitcoinExchange::trim(const std::string& str) {
-    size_t first = str.find_first_not_of(" \t\n\r");
-    if (first == std::string::npos)
-        return "";
-
-    size_t last = str.find_last_not_of(" \t\n\r");
-    return str.substr(first, (last - first + 1));
 }
 
 void BitcoinExchange::removeSpaces(std::string &str) {

@@ -1,4 +1,4 @@
-NAME					=	btc
+NAME					=	RNP
 CC						=	c++
 FLAGS					=	-Wall -Wextra -Werror -std=c++98
 RM						=	rm -rf
@@ -8,7 +8,7 @@ SRC_PATH = srcs/
 OBJ_PATH = objs/
 HEADER_PATH = includes/
 ### All sources ###
-SOURCES		=	main.cpp BitcoinExchange.cpp
+SOURCES		=	main.cpp RNP.cpp
 ### All objects ###
 
 SRCS = $(addprefix $(SRC_PATH),$(SOURCES))
@@ -53,7 +53,7 @@ header:
 
 define HEADER_PROJECT
 
-CPP MODULE 09/EX00
+CPP MODULE 09/EX01
 
 endef
 export HEADER_PROJECT

@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 16:13:21 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/18 17:58:07 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/21 18:19:20 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,18 +38,16 @@ class BitcoinExchange
 		void				exchangeValue(std::string &date, float amount);
 		/*Utils*/
 		bool				checkDateFormat(std::string &l);
-		std::string 		trim(const std::string& str);
 		void				removeSpaces(std::string &str);
 		/*Print*/
 		void				printMap(const std::map<std::string, float>& m);
 		/*Iterators*/
-		std::map<std::string, float>::iterator it_find;
+		std::map<std::string, float>::iterator _it_find;
 	public:
 		BitcoinExchange();
 		// BitcoinExchange(BitcoinExchange const &src);
 		~BitcoinExchange();
 		// BitcoinExchange &operator=(BitcoinExchange const &rhs);
-
 		/*Convert main function*/
 		void	exchange(const std::string &input_file);
 		/*Exceptions*/
