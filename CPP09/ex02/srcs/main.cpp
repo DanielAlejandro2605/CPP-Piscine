@@ -5,28 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/21 18:58:02 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/24 19:00:54 by dnieto-c         ###   ########.fr       */
+/*   Created: 2023/08/22 16:04:49 by dnieto-c          #+#    #+#             */
+/*   Updated: 2023/08/24 19:01:13 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+# include "PmergeMe.hpp"
 
-#include "RNP.hpp"
-
-int main(int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
-	(void)argc;
-	try {
-		if (!argv[1])
-		{
-			throw RNP::Error();
-		}
-		RNP rnp;
-    	rnp.run(argv[1]);
-	}
-	catch(const std::exception& e)
+	if (argc > 2)
 	{
-		std::cout << e.what() << std::endl;
+		try
+		{
+			PmergeMe a(argv + 1);
+			// a.run();
+		}
+		catch(const std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
 	}
-    return (0);
+	else
+		std::cout << "Error" << std::endl;
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 19:00:57 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/21 20:47:03 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:24:43 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	RNP::run(std::string arg)
 			if (this->_stack.size() < 2)
 			{
 				throw RNP::Error();
-				return ;
 			}
 			val1 = this->_stack.top();
 			this->_stack.pop();
@@ -87,6 +86,8 @@ void	RNP::run(std::string arg)
 		}
 		else if (arg[idx] >= '0' && arg[idx] <= '9')
 		{
+			if (arg[idx + 1] && arg[idx + 1] != ' ')
+				throw RNP::Error();
 			this->_stack.push(static_cast<int>(arg[idx] - '0'));
 		}
 		idx++;

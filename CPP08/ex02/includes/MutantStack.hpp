@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:17:29 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/11 17:32:38 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/25 14:17:36 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ class MutantStack : public std::stack<T>
 		MutantStack<T>( MutantStack const &src) : std::stack<T>(src) {};
 		/*Destructors*/
 		virtual ~MutantStack() {};
-		/*Operator '=' overload*/
-		MutantStack<T> &		operator=(MutantStack const &rhs)
+		/*Operator '=' overload
+		Why new ? */
+		MutantStack<T> &operator=(MutantStack const &rhs)
 		{
 			if (*this != rhs)
 				*this = new std::stack<T>(rhs);

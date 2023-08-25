@@ -6,14 +6,13 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 16:09:25 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/02 16:34:25 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/23 10:56:55 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef WHATEVER_HPP
 # define WHATEVER_HPP
 
-// Colores de texto
 #define BLACK "\033[30m"
 #define RED "\033[31m"
 #define GREEN "\033[32m"
@@ -25,7 +24,6 @@
 #define RESET "\033[0m"
 #define PURPLE    "\e[95m"
 
-// Colores de fondo
 #define BGBLACK "\033[40m"
 #define BGRED "\033[41m"
 #define BGGREEN "\033[42m"

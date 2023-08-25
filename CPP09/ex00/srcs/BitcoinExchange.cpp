@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:15 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/21 18:19:04 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/22 14:22:00 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,14 +80,7 @@ void	BitcoinExchange::exchange(const std::string &input_file)
 		}
 		else
 		{
-			try
-			{
-				exchangeLine(this->_buffer, "0123456789-|. ", '|');
-			}
-			catch(const std::exception& e)
-			{
-				std::cerr << e.what() << std::endl;
-			}
+			exchangeLine(this->_buffer, "0123456789-|. ", '|');
 		}
 		i++;
     }
@@ -103,6 +96,7 @@ void	BitcoinExchange::exchangeLine(const std::string &line, std::string set, cha
 	size_t		sep;
 	char		*endptr;
 
+	/*Littles checks*/
 	if (!(line.find_first_not_of(set) == std::string::npos) || (line[10] != ' ' || line[12] != ' '))
 	{
 		std::cout << "Error: bad input => " << line << std::endl;	
@@ -139,11 +133,10 @@ void	BitcoinExchange::exchangeLine(const std::string &line, std::string set, cha
 		return;	
 	}
 	exchangeValue(date, btc_exchange);
-	// std::cout << date << std::endl;
 	
 }
 
-/*Returns an iterator pointing to the first element that is not less than (i.e. greater or equal to) key.*/
+/*lower_bound : Returns an iterator pointing to the first element that is not less than (i.e. greater or equal to) key.*/
 void	BitcoinExchange::exchangeValue(std::string &date, float amount)
 {
 	this->_it_find = this->_map.lower_bound(date);

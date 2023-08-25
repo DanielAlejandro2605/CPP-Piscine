@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/02 17:18:01 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/02 19:47:38 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/24 15:13:16 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 
 # include <iostream>
 # include <string>
-
-// Colores de texto
+# include<cstdlib>
 #define BLACK "\033[30m"
 #define RED "\033[31m"
 #define GREEN "\033[32m"
@@ -28,7 +27,6 @@
 #define RESET "\033[0m"
 #define PURPLE    "\e[95m"
 
-// Colores de fondo
 #define BGBLACK "\033[40m"
 #define BGRED "\033[41m"
 #define BGGREEN "\033[42m"
@@ -41,11 +39,13 @@
 template <typename T>
 class Array
 {
-
+	private:
+		T*				_data;
+    	unsigned int	_array_size;
 	public:
 		/*Construction without parameters*/
 		Array();
-		/*Construction with an unsigned int n as a paramete*/
+		/*Construction with an unsigned int n as a parameter*/
 		Array(unsigned int n);
 		/*Copy constructor an operator '=' overload*/
 		Array(Array const &src);
@@ -64,9 +64,6 @@ class Array
 				return ("Array: Index out of range");
 			}
 		};
-	private:
-		T*				_data;
-    	unsigned int	_array_size;
 };
 
 #include "Array.tpp"

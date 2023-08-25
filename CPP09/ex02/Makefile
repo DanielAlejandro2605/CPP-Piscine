@@ -1,6 +1,6 @@
-NAME					=	array
+NAME					=	PmergeMe
 CC						=	c++
-FLAGS					=	-Wall -Wextra -Werror -std=c++98 -g
+FLAGS					=	-Wall -Wextra -Werror -std=c++98
 RM						=	rm -rf
 
 ### Directories ###
@@ -8,7 +8,8 @@ SRC_PATH = srcs/
 OBJ_PATH = objs/
 HEADER_PATH = includes/
 ### All sources ###
-SOURCES		=	main_subject.cpp
+# SOURCES		=	main.cpp PmergeMe.cpp
+SOURCES		=	possible_algo.cpp
 ### All objects ###
 
 SRCS = $(addprefix $(SRC_PATH),$(SOURCES))
@@ -31,7 +32,7 @@ $(NAME) : $(OBJS)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.cpp
 	@$(CC) -MMD $(FLAGS) -c -o $@ $< -I $(HEADER_PATH)
-	@echo "$(CYAN)Creation of object file -> $(CYAN)$(notdir $@)... $(GREEN)[Done]$(NOC)"
+	@echo "$(CYAN)Creation of object file -> $(CYAN)$(notdir $@)... $(GREEN)[Done] $(NOC)"
 
 clean :
 	@echo "clean: $(GREEN)Cleaning object files$(NOC)"
@@ -53,7 +54,7 @@ header:
 
 define HEADER_PROJECT
 
-CPP MODULE 07/EX01
+CPP MODULE 09/EX02
 
 endef
 export HEADER_PROJECT
