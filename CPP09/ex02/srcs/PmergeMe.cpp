@@ -85,4 +85,5 @@ const char* PmergeMe::Error::what() const throw() {
 const char* PmergeMe::DuplicatesError::what() const throw() {
     return ("Error: duplicate.");
 }
+
 /* ************************************************************************** */

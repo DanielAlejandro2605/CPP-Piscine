@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 18:59:00 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/21 20:47:24 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/28 17:28:02 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,9 @@ class RNP
 		void	doOperation(char op, int val1, int val2);
 		bool	isOperator(char c);
 		void	print(void);
-		class Error : public std::exception
-		{
-			public:
-				const char* what() const throw()
-				{
-					return ("Error");
-				}
+		class Error : public std::exception {
+		public:
+			const char* what() const throw();
 		};
 };
 

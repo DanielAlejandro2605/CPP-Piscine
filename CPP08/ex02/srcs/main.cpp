@@ -6,11 +6,10 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/10 13:16:20 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/10 14:30:18 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/28 20:02:12 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include "MutantStack.hpp"
 
 int main() {

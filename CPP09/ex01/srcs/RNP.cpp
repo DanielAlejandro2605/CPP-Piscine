@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 19:00:57 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/22 14:24:43 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/28 19:24:30 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void	RNP::run(std::string arg)
 		}
 		idx++;
 	}
+	if (this->_stack.size() > 1)
+		throw RNP::Error();
 	print();
 }
 
@@ -107,6 +109,7 @@ void	RNP::print(void)
     std::cout << std::endl;
 }
 
+// ./RNP "1 1 + 1 + 1"
 void	RNP::doOperation(char op, int val1, int val2)
 {
 	switch(op)
@@ -118,6 +121,11 @@ void	RNP::doOperation(char op, int val1, int val2)
 			this->_stack.push(val2 - val1);
 			break;
 		case '/':
+			if (val1 == 0)
+			{
+				throw RNP::Error();
+				break;
+			}
 			this->_stack.push(val2 / val1);
 			break;
 		case '*':
@@ -132,4 +140,9 @@ bool	RNP::isOperator(char c)
 		return -(true);
 	return (false);
 }
+
+const char* RNP::Error::what() const throw() {
+    return ("Error.");
+}
+
 /* ************************************************************************** */
