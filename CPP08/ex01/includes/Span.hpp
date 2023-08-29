@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:14:05 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/10 13:15:34 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/29 11:04:14 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@
 
 class Span
 {
+	private:
+		std::vector<int>	_v;
+		unsigned int		_size;
 	public:
 		/*Constructors*/
 		Span(unsigned int N);
@@ -53,24 +56,17 @@ class Span
 		void			addNumber(const std::vector<int>::iterator &begin, const std::vector<int>::iterator &end);
 		unsigned int	shortestSpan(void);
 		unsigned int	longestSpan(void);
+		/*Print*/
+		void 			printSpan(void);
 		/*Exceptions*/
-		class SpanIsFull : public std::exception
-		{
-			const char* what() const throw()
-			{
-				return ("Span is already full!");
-			} 	
+		class SpanIsFull : public std::exception {
+		public:
+			const char* what() const throw();
 		};
-		class ImpossibleComputeSpan : public std::exception
-		{
-			const char* what() const throw()
-			{
-				return ("Span is empty or has only one element!");
-			} 	
+		class ImpossibleComputeSpan : public std::exception {
+		public:
+			const char* what() const throw();
 		};
-	private:
-		std::vector<int>	_v;
-		unsigned int		_size;
 };
 
 #endif /* ************************************************************ SPAN_H */

@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 16:22:36 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/10 13:15:37 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/29 11:35:04 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,13 @@ unsigned int	Span::shortestSpan(void)
 
 	if (this->_v.size() <= 1)
 		throw ImpossibleComputeSpan();
-	for (std::vector<int>::iterator iter = this->_v.begin(); iter != (this->_v.end() - 1); iter++)
+	for (std::vector<int>::iterator iter_i = this->_v.begin(); iter_i != (this->_v.end() - 1); iter_i++)
 	{
-		d = std::abs(*(iter + 1) - *iter);
-		distances.push_back(d);
+		for (std::vector<int>::iterator iter_j = iter_i + 1; iter_j != this->_v.end(); iter_j++)
+		{
+			d = std::abs(*iter_i - *iter_j);
+			distances.push_back(d);	
+		}
 	}
 	r = static_cast<unsigned int>(*std::min_element(distances.begin(), distances.end()));
 	return (r);
@@ -101,17 +104,33 @@ unsigned int	Span::longestSpan(void)
 
 	if (this->_v.size() <= 1)
 		throw ImpossibleComputeSpan();
-	for (std::vector<int>::iterator iter = this->_v.begin(); iter != (this->_v.end() - 1); iter++)
+	for (std::vector<int>::iterator iter_i = this->_v.begin(); iter_i != (this->_v.end() - 1); iter_i++)
 	{
-		d = std::abs(*(iter + 1) - *iter);
-		distances.push_back(d);
+		for (std::vector<int>::iterator iter_j = iter_i + 1; iter_j != this->_v.end(); iter_j++)
+		{
+			d = std::abs(*iter_i - *iter_j);
+			distances.push_back(d);	
+		}
 	}
 	r = static_cast<unsigned int>(*std::max_element(distances.begin(), distances.end()));
 	return (r);
 }
+
+void	Span::printSpan(void) {
+    for (std::vector<int>::iterator iter = this->_v.begin(); iter != this->_v.end(); iter++)
+		std::cout << YELLOW << *iter << " " << RESET;
+	std::cout << std::endl;
+}
+
 /*
-** --------------------------------- ACCESSOR ---------------------------------
+** --------------------------------- EXCEPTIONS ---------------------------------
 */
 
+const char* Span::SpanIsFull::what() const throw() {
+   return ("Span is already full!");
+}
 
+const char* Span::ImpossibleComputeSpan::what() const throw() {
+  return ("Span is empty or has only one element!");
+}
 /* ************************************************************************** */
