@@ -8,8 +8,8 @@ SRC_PATH = srcs/
 OBJ_PATH = objs/
 HEADER_PATH = includes/
 ### All sources ###
-# SOURCES		=	main.cpp PmergeMe.cpp
-SOURCES		=	possible_algo.cpp
+SOURCES		=	main.cpp PmergeMe.cpp
+# SOURCES		=	possible_algo.cpp
 ### All objects ###
 
 SRCS = $(addprefix $(SRC_PATH),$(SOURCES))

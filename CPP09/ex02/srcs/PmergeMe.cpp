@@ -28,6 +28,8 @@ PmergeMe::PmergeMe(char **arg)
 				throw PmergeMe::DuplicatesError();
 		}
 	}
+	this->_data_length = this->_data.size();
+	std::cout << "Hay :" << this->_data_length << std::endl;
 }
 
 // PmergeMe::PmergeMe( const PmergeMe & src )
@@ -67,7 +69,54 @@ PmergeMe::~PmergeMe()
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
+void	PmergeMe::sort(void)
+{
+	getPairsFromVector(this->_data);
+	std::cout << "pending: ";
+	for(std::vector<int>::iterator i = this->_pending.begin(); i != this->_pending.end(); i++)
+		std::cout << " " << *i;
+}
 
+void	PmergeMe::getPairsFromVector(std::vector<int> v)
+{
+	std::vector<int>							new_vec;
+	std::vector<std::pair<int, int> > 			pairs;
+	std::vector<std::pair<int, int> >::iterator i_pairs;
+	// int	firstValue;
+	// int	secondValue;
+	int p1;
+	int p2;
+
+	for (size_t i = 0; i < v.size(); i += 2) {
+		p1 = v[i];
+        p2 = (i + 1 < v.size()) ? v[i + 1] : -1;
+		if (p1 < p2) {
+			pairs.push_back(std::make_pair(p2, p1));
+		} else {
+			pairs.push_back(std::make_pair(p1, p2));
+		}
+    }
+
+	for(i_pairs = pairs.begin(); i_pairs != pairs.end(); i_pairs++)
+	{
+		std::cout << "(" << i_pairs->first << "-" << i_pairs->second << ")" << std::endl;
+		if (i_pairs->second != -1)
+			new_vec.push_back(i_pairs->first);
+		else
+			this->_pending.push_back(i_pairs->first);
+	}
+
+	// // std::cout << (int)pairs.size() << std::endl;
+	if (pairs.size() == 2)
+	{
+		return;
+	}
+	std::cout << "new vec :";
+	for(std::vector<int>::iterator i = new_vec.begin(); i != new_vec.end(); i++)
+		std::cout << " " << *i;
+	std::cout << std::endl;
+	getPairsFromVector(new_vec);
+}
 
 /*
 ** --------------------------------- ACCESSOR ---------------------------------

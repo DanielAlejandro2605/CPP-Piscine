@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:04:49 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/24 19:01:13 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:20:12 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char *argv[])
 		try
 		{
 			PmergeMe a(argv + 1);
-			// a.run();
+			a.sort();
 		}
 		catch(const std::exception& e)
 		{
