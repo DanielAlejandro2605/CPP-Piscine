@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:04:57 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/30 18:57:17 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:23:03 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ class PmergeMe
 {
 	private:
 		std::vector<int>							_data;
+		std::vector<int>							_main_chain;
 		std::vector<int>							_pending;
 		int											_data_length;
 		std::vector<std::pair<int, int> > 			_pairs;
@@ -38,6 +39,7 @@ class PmergeMe
 		/*Sort function*/
 		void	sort(void);
 		void	getPairsFromVector(std::vector<int>);
+		void	addToMainChain(std::vector<int> vec, int n);
 		class Error : public std::exception {
 		public:
 			const char* what() const throw();
