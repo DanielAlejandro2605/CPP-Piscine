@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:04:57 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/31 16:23:03 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/09/01 14:14:03 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <string>
 # include <vector>
 # include <set>
+# include <algorithm>
 
 class PmergeMe
 {
@@ -39,7 +40,7 @@ class PmergeMe
 		/*Sort function*/
 		void	sort(void);
 		void	getPairsFromVector(std::vector<int>);
-		void	addToMainChain(std::vector<int> vec, int n);
+		void	addToMainChain(int n);
 		class Error : public std::exception {
 		public:
 			const char* what() const throw();
