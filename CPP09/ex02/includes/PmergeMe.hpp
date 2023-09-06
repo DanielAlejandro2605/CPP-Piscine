@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:04:57 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/09/06 11:54:30 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/09/06 18:34:39 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ class PmergeMe
 };
 
 bool estaOrdenado(const std::vector<int>& vec);
+void imprimirElementosUnicos(const std::vector<int>& vec1, const std::vector<int>& vec2);
 std::ostream &			operator<<( std::ostream & o, PmergeMe const & i );
 
 #endif /* ******************************************************** PMERGEME_H */
