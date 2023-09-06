@@ -29,7 +29,7 @@ PmergeMe::PmergeMe(char **arg) : _i(0)
 		}
 	}
 	this->_data_length = this->_data.size();
-	std::cout << "Hay :" << this->_data_length << std::endl;
+	// std::cout << "Hay :" << this->_data_length << std::endl;
 }
 
 // PmergeMe::PmergeMe( const PmergeMe & src )
@@ -70,7 +70,6 @@ bool estaOrdenado(const std::vector<int>& vec) {
         if (vec[i] < vec[i - 1]) {
             // El vector no está ordenado de menor a mayor en el índice i.
             std::cout << "El vector no está ordenado en el índice " << i << "." << std::endl;
-			std::cout << vec[i] << std::endl;
             return false;
         }
     }
@@ -87,7 +86,7 @@ void	PmergeMe::sort(void)
 	// 	std::cout << " " << *i;
 	// std::cout << std::endl;
 	getPairsFromVector(this->_data);
-	// std::cout << "main chain: ";
+	// std::cout << "main chain before reverse: ";
 	// for(std::vector<int>::iterator i = this->_main_chain.begin(); i != this->_main_chain.end(); i++)
 	// 	std::cout << " " << *i;
 	// std::cout << std::endl;
@@ -108,11 +107,10 @@ void	PmergeMe::sort(void)
         // for (size_t i = 0; i < this->_data.size(); i++) {
         //     std::cout << this->_data[i] << " ";
         // }
-		std::cout << "NOOOO :" << this->_main_chain.size() << std::endl;
 		for (size_t i = 0; i < this->_main_chain.size(); i++) {
             std::cout << this->_main_chain[i] << " ";
         }
-		std::cout << std::endl;
+		// std::cout << std::endl;
     }
 }
 
@@ -137,10 +135,10 @@ void	PmergeMe::getPairsFromVector(std::vector<int> v)
 			pairs.push_back(std::make_pair(p1, p2));
 		}
     }
-
+	std::cout << "************************" << std::endl;
 	for(i_pairs = pairs.begin(); i_pairs != pairs.end(); i_pairs++)
 	{
-		// std::cout << "(" << i_pairs->first << "-" << i_pairs->second << ")";
+		std::cout << "(" << i_pairs->first << "-" << i_pairs->second << ")";
 		// if (i_pairs->second != 0 || (i_pairs->second == 0 && this->_pending.size() > 0))
 		// {
 		// 	new_vec.push_back(i_pairs->first);
@@ -162,7 +160,8 @@ void	PmergeMe::getPairsFromVector(std::vector<int> v)
 			}
 		}
 	}
-	// std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << "************************" << std::endl;
 	// std::cout << "new vec :";
 	// for(std::vector<int>::iterator i = new_vec.begin(); i != new_vec.end(); i++)
 	// 	std::cout << " " << *i;
@@ -181,6 +180,7 @@ void	PmergeMe::getPairsFromVector(std::vector<int> v)
 		// for (size_t i = 0; i < this->_main_chain.size(); i++) {
         //     std::cout << this->_main_chain[i] << " ";
         // }
+		// std::cout << std::endl;
 		return;
 	}
 	else if (!((this->_data.size() % 2) == 0) && pairs.size() == 2)
@@ -260,6 +260,11 @@ void	PmergeMe::addToMainChain(int n)
 
 	if (n == 0)
 		return;
+	std::cout << "main chain: ";
+	for(std::vector<int>::iterator i = this->_main_chain.begin(); i != this->_main_chain.end(); i++)
+		std::cout << " " << *i;
+	std::cout << std::endl;
+	std::cout << "n to insert: " << n << std::endl;
 	// if (this->_i_debug < 10)
 	// {
 	// 	std::cout << "main chain: ";
@@ -281,7 +286,7 @@ void	PmergeMe::addToMainChain(int n)
 	{
 		insert_it = this->_main_chain.begin() + (this->_main_chain.size() / 2);
 		media = (*insert_it + *(--insert_it)) / 2;
-		// std::cout << "here " << media << std::endl;
+		std::cout << "here media :" << media << std::endl;
 		if (n < media)
 		{
 			insert_it++;
@@ -295,14 +300,43 @@ void	PmergeMe::addToMainChain(int n)
 		}
 		else
 		{
-			while (insert_it != this->_main_chain.begin())
+			std::cout << "soooo: " << *insert_it << std::endl;
+			if (insert_it == this->_main_chain.begin())
 			{
-				if (n < *insert_it)
-					break;
-				insert_it--;
+				this->_main_chain.insert(insert_it, n);
 			}
-			this->_main_chain.insert(++insert_it, n);
+			else
+			{
+				while (insert_it != this->_main_chain.begin())
+				{
+					// std::cout << "*******************" << std::endl;
+					// std::cout << n << std::endl;
+					// std::cout << *insert_it << std::endl;
+					// std::cout << (n < *insert_it) << std::endl;
+					// std::cout << "*******************" << std::endl;
+					if (n < *insert_it)
+					{
+						// std::cout << "break" << std::endl;
+						break;
+					}
+					// std::cout << "decrement" << std::endl;
+					insert_it--;
+				}
+				std::cout << "now: " << *insert_it << std::endl;
+				if (insert_it == this->_main_chain.begin())
+				{
+					this->_main_chain.insert(insert_it, n);
+				}
+				else
+					this->_main_chain.insert(++insert_it, n);
+			}
 		}
+		std::cout << "main chain before exit: ";
+		for(std::vector<int>::iterator i = this->_main_chain.begin(); i != this->_main_chain.end(); i++)
+			std::cout << " " << *i;
+		std::cout << std::endl;
+		if (n == 99947)
+			exit(1);
 	}
 	else
 	{
