@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:04:57 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/09/01 14:14:03 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/09/06 11:54:30 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ class PmergeMe
 		std::vector<int>::iterator 					_i;
 		std::vector<int>::iterator					_j;
 		std::vector<std::pair<int, int> >::iterator _i_pairs;
+		int											_i_debug;
 	public:
 		PmergeMe(char **);
 		// PmergeMe(PmergeMe const &src);
@@ -51,6 +52,7 @@ class PmergeMe
 		};
 };
 
+bool estaOrdenado(const std::vector<int>& vec);
 std::ostream &			operator<<( std::ostream & o, PmergeMe const & i );
 
 #endif /* ******************************************************** PMERGEME_H */

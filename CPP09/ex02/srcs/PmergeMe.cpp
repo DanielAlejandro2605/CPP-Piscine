@@ -4,7 +4,7 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-PmergeMe::PmergeMe(char **arg)
+PmergeMe::PmergeMe(char **arg) : _i(0)
 {
 	std::pair<std::set<int>::iterator,bool> ret;
 	std::string	set;
@@ -65,41 +65,53 @@ PmergeMe::~PmergeMe()
 // 	return o;
 // }
 
+bool estaOrdenado(const std::vector<int>& vec) {
+    for (size_t i = 1; i < vec.size(); i++) {
+        if (vec[i] < vec[i - 1]) {
+            // El vector no está ordenado de menor a mayor en el índice i.
+            std::cout << "El vector no está ordenado en el índice " << i << "." << std::endl;
+            return false;
+        }
+    }
+    return true; // El vector está ordenado correctamente.
+}
 
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
 void	PmergeMe::sort(void)
 {
-	bool ordenado = true;
-
 	// std::cout << "data: ";
 	// for(std::vector<int>::iterator i = this->_data.begin(); i != this->_data.end(); i++)
 	// 	std::cout << " " << *i;
 	// std::cout << std::endl;
 	getPairsFromVector(this->_data);
+	// std::cout << "main chain: ";
+	// for(std::vector<int>::iterator i = this->_main_chain.begin(); i != this->_main_chain.end(); i++)
+	// 	std::cout << " " << *i;
+	// std::cout << std::endl;
+
 	std::reverse(this->_main_chain.begin(), this->_main_chain.end());
 	// std::cout << "main chain: ";
 	// for(std::vector<int>::iterator i = this->_main_chain.begin(); i != this->_main_chain.end(); i++)
 	// 	std::cout << " " << *i;
 	// std::cout << std::endl;
 
-	for (size_t i = 1; i < this->_main_chain.size(); ++i) {
-        if (this->_main_chain[i - 1] > this->_main_chain[i]) {
-            ordenado = false;
-            break; // Si encuentra un elemento desordenado, sal del bucle
-        }
-    }
-
-    if (ordenado) {
+	if (estaOrdenado(this->_main_chain)) {
         std::cout << "OK" << std::endl;
+		// for (size_t i = 0; i < this->_main_chain.size(); i++) {
+        //     std::cout << "miVector[" << i << "] = " << this->_main_chain[i] << std::endl;
+        // }
     } else {
         std::cout << "KO" << std::endl;
+        // for (size_t i = 0; i < this->_data.size(); i++) {
+        //     std::cout << this->_data[i] << " ";
+        // }
+		// for (size_t i = 0; i < this->_main_chain.size(); i++) {
+        //     std::cout << this->_main_chain[i] << " ";
+        // }
+		std::cout << std::endl;
     }
-	// std::cout << "pending: ";
-	// for(std::vector<int>::iterator i = this->_pending.begin(); i != this->_pending.end(); i++)
-	// 	std::cout << " " << *i;
-	// std::cout << std::endl;
 }
 
 void	PmergeMe::getPairsFromVector(std::vector<int> v)
@@ -142,7 +154,10 @@ void	PmergeMe::getPairsFromVector(std::vector<int> v)
 		else
 		{
 			if (this->_pending.size() == 0)
+			{
+				// std::cout << "here" << i_pairs->first << std::endl;
 				this->_pending.push_back(i_pairs->first);
+			}
 		}
 	}
 	// std::cout << std::endl;
@@ -153,9 +168,17 @@ void	PmergeMe::getPairsFromVector(std::vector<int> v)
 	if (((this->_data.size() % 2) == 0) && pairs.size() == 1)
 	{
 		i_pairs = pairs.begin();
+		// if (i_pairs->first)
+		// std::cout << "here " << i_pairs->first << std::endl;
+		// std::cout << "here " << i_pairs->second << std::endl;
 		this->_main_chain.push_back(i_pairs->first);
 		if (i_pairs->second != 0)
 			this->_main_chain.push_back(i_pairs->second);
+		// std::cout << "caso tres" << std::endl;
+		// std::cout << "esto pasa" << std::endl;
+		// for (size_t i = 0; i < this->_main_chain.size(); i++) {
+        //     std::cout << this->_main_chain[i] << " ";
+        // }
 		return;
 	}
 	else if (!((this->_data.size() % 2) == 0) && pairs.size() == 2)
@@ -163,9 +186,16 @@ void	PmergeMe::getPairsFromVector(std::vector<int> v)
 		i_pairs = pairs.begin();
 		this->_main_chain.push_back(i_pairs->first);
 		this->_main_chain.push_back(i_pairs->second);
+		if (this->_pending.size() > 0)
+		{
+			addToMainChain(this->_pending.front());
+		}
+		// std::cout << "esto pasa" << std::endl;
+		// for (size_t i = 0; i < this->_main_chain.size(); i++) {
+        //     std::cout << this->_main_chain[i] << " ";
+        // }
 		return;
 	}
-
 	getPairsFromVector(new_vec);
 	// std::cout << "After getPairsFromVector : ";
 	// for(i_pairs = pairs.begin(); i_pairs != pairs.end(); i_pairs++)
@@ -177,12 +207,12 @@ void	PmergeMe::getPairsFromVector(std::vector<int> v)
 
 	// addToMainChain(this->_pending.begin());
 
-	// // std::cout << "main chain: ";
+	// std::cout << "main chain: ";
 	// for(std::vector<int>::iterator i = this->_main_chain.begin(); i != this->_main_chain.end(); i++)
 	// 	std::cout << " " << *i;
 	// std::cout << std::endl;
 
-	// // std::cout << "pending: ";
+	// std::cout << "pending: ";
 	// for(std::vector<int>::iterator i = this->_pending.begin(); i != this->_pending.end(); i++)
 	// 	std::cout << " " << *i;
 	// std::cout << std::endl;
@@ -228,6 +258,17 @@ void	PmergeMe::addToMainChain(int n)
 
 	if (n == 0)
 		return;
+	// if (this->_i_debug < 10)
+	// {
+	// 	std::cout << "main chain: ";
+	// 	for(std::vector<int>::iterator i = this->_main_chain.begin(); i != this->_main_chain.end(); i++)
+	// 		std::cout << " " << *i;
+	// 	std::cout << std::endl;
+	// 	std::cout << "n to insert: " << n << std::endl;
+	// 	this->_i_debug++;
+	// }
+	// else
+	// 	exit(1);
 	// std::cout << "main chain: ";
 	// for(std::vector<int>::iterator i = this->_main_chain.begin(); i != this->_main_chain.end(); i++)
 	// 	std::cout << " " << *i;
@@ -238,6 +279,7 @@ void	PmergeMe::addToMainChain(int n)
 	{
 		insert_it = this->_main_chain.begin() + (this->_main_chain.size() / 2);
 		media = (*insert_it + *(--insert_it)) / 2;
+		// std::cout << "here " << media << std::endl;
 		if (n < media)
 		{
 			insert_it++;
@@ -262,7 +304,6 @@ void	PmergeMe::addToMainChain(int n)
 	}
 	else
 	{
-		// std::cout << "this case!" << std::endl;
 		insert_it = this->_main_chain.begin() + (this->_main_chain.size() / 2);
 		media = *insert_it;
 		// std::cout << "media " << media << std::endl;
