@@ -82,27 +82,27 @@ std::vector<int> sort(std::vector<int>& coll, int (*comp)(int, int)) {
     if (coll.size() < 2) {
         return coll;
     } else {
-        std::vector<int> sorted_pairs;
+        std::vector<int> sorted_pairs_v;
         for (size_t i = 0; i < coll.size(); i += 2) {
             int a = coll[i];
             int b = (i + 1 < coll.size()) ? coll[i + 1] : coll[i];
             if (comp(a, b) < 0) {
-                sorted_pairs.push_back(a);
-                sorted_pairs.push_back(b);
+                sorted_pairs_v.push_back(a);
+                sorted_pairs_v.push_back(b);
             } else {
-                sorted_pairs.push_back(b);
-                sorted_pairs.push_back(a);
+                sorted_pairs_v.push_back(b);
+                sorted_pairs_v.push_back(a);
             }
         }
 
         std::vector<int>::iterator _i;
-        for (_i = sorted_pairs.begin(); _i != sorted_pairs.end(); _i++)
+        for (_i = sorted_pairs_v.begin(); _i != sorted_pairs_v.end(); _i++)
         {
-            std::cout << "sorted_pairs " << *_i << std::endl;
+            std::cout << "sorted_pairs_v " << *_i << std::endl;
         }
 
         std::vector<int> main_chain;
-        main_chain.insert(main_chain.end(), sorted_pairs.begin(), sorted_pairs.begin() + sorted_pairs.size() / 2);
+        main_chain.insert(main_chain.end(), sorted_pairs_v.begin(), sorted_pairs_v.begin() + sorted_pairs_v.size() / 2);
 
         for (_i = main_chain.begin(); _i != main_chain.end(); _i++)
         {
@@ -110,7 +110,7 @@ std::vector<int> sort(std::vector<int>& coll, int (*comp)(int, int)) {
         }
         
         std::vector<int> pending_elements;
-        pending_elements.insert(pending_elements.end(), sorted_pairs.begin() + sorted_pairs.size() / 2, sorted_pairs.end());
+        pending_elements.insert(pending_elements.end(), sorted_pairs_v.begin() + sorted_pairs_v.size() / 2, sorted_pairs_v.end());
         // if (coll.size() % 2 == 1) {
         //     pending_elements.push_back(coll[coll.size() - 1]);
         // }
@@ -118,7 +118,7 @@ std::vector<int> sort(std::vector<int>& coll, int (*comp)(int, int)) {
         {
             std::cout << "pending elements" << *_i << std::endl;
         }
-        return(sorted_pairs);
+        return(sorted_pairs_v);
 
         // std::vector<int> a_positions(main_chain.size());
         // for (size_t i = 0; i < a_positions.size(); ++i) {
@@ -153,8 +153,8 @@ int main() {
 
     sort(data, compare);
 
-    // for (size_t i = 0; i < sorted_data.size(); ++i) {
-    //     std::cout << sorted_data[i] << " ";
+    // for (size_t i = 0; i < sorted_data_v.size(); ++i) {
+    //     std::cout << sorted_data_v[i] << " ";
     // }
 
     return 0;
