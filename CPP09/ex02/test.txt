@@ -2,3 +2,4 @@
 test simple : ./PmergeMe 10 7 4 3 6 5 9
 test algo : ./PmergeMe 51 15 85 99 28 40 13 76 64 82 34 67 42 95 55 100 8 19
 ./PmergeMe `shuf -i 1-100000 -n 3000 | tr "\n" " "`
+./PmergeMe `shuf -i 1-100000 -n 2999 | tr "\n" " "` > hola

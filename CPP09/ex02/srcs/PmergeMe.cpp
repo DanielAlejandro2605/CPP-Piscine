@@ -29,7 +29,7 @@ PmergeMe::PmergeMe(char **arg) : _i(0)
 		}
 	}
 	this->_data_length = this->_data.size();
-	// std::cout << "Hay :" << this->_data_length << std::endl;
+	std::cout << "Hay :" << this->_data_length << std::endl;
 }
 
 // PmergeMe::PmergeMe( const PmergeMe & src )
@@ -70,6 +70,7 @@ bool estaOrdenado(const std::vector<int>& vec) {
         if (vec[i] < vec[i - 1]) {
             // El vector no está ordenado de menor a mayor en el índice i.
             std::cout << "El vector no está ordenado en el índice " << i << "." << std::endl;
+			std::cout << vec[i] << std::endl;
             return false;
         }
     }
@@ -107,9 +108,10 @@ void	PmergeMe::sort(void)
         // for (size_t i = 0; i < this->_data.size(); i++) {
         //     std::cout << this->_data[i] << " ";
         // }
-		// for (size_t i = 0; i < this->_main_chain.size(); i++) {
-        //     std::cout << this->_main_chain[i] << " ";
-        // }
+		std::cout << "NOOOO :" << this->_main_chain.size() << std::endl;
+		for (size_t i = 0; i < this->_main_chain.size(); i++) {
+            std::cout << this->_main_chain[i] << " ";
+        }
 		std::cout << std::endl;
     }
 }
