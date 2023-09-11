@@ -101,15 +101,27 @@ void	PmergeMe::sort(void)
 {
 	// getPairsVector(this->_data_v);
 	// std::reverse(this->_main_chain_v.begin(), this->_main_chain_v.end());
-	std::cout << "hey" << std::endl;
 	getPairsList(this->_data_l);
 	std::reverse(this->_main_chain_l.begin(), this->_main_chain_l.end());
 	if (checkSortList(this->_main_chain_l)) {
         std::cout << "OK" << std::endl;
-		std::cout << this->_main_chain_l.size() << std::endl;
+		std::cout << "main chain size " << this->_main_chain_l.size() << std::endl;
     } else {
         std::cout << "KO" << std::endl;
     }
+	if (this->_main_chain_l.size() != this->_data_l.size())
+	{
+		if (this->_main_chain_l.size() < this->_data_l.size())
+		{
+			std::cout << "Absents: ";
+			AfficherElementsDifferents(this->_main_chain_l, this->_data_l);
+		}
+		else
+		{
+			std::cout << "Duplicates: ";
+			TrouverDoublons(this->_main_chain_l);
+		}
+	}
 }
 
 void	PmergeMe::getPairsVector(std::vector<int> v)
@@ -245,30 +257,36 @@ void	PmergeMe::addToMainChainVector(int n)
 }
 
 void 	PmergeMe::getPairsList(std::list<int> lst) {
-	std::list<int> new_lst;
+	std::list<int> 					new_lst;
+	std::list<int>::iterator 		it;
 	std::list<std::pair<int, int> > pairs;
 	int p1;
 	int p2;
 
-	std::cout << "hey" << std::endl;
-	int i = 0;
-	for (std::list<int>::iterator it = lst.begin(); it != lst.end(); it++) {
+	it = lst.begin();
+	while (it != lst.end())
+	{
 		p1 = *it;
-		++it;
-		p2 = (it != lst.end()) ? *it : 0;
-		std::cout << "p1 " << p1 << std::endl;
-		std::cout << "p2 " << p2 << std::endl;
+		it++;
+		if (it == lst.end())
+		{
+			p2 = 0;
+			if (p1 < p2) {
+			pairs.push_back(std::make_pair(p2, p1));
+			} else {
+				pairs.push_back(std::make_pair(p1, p2));
+			}
+			break;
+		}
+		p2 = *it;
+		it++;
 		if (p1 < p2) {
 			pairs.push_back(std::make_pair(p2, p1));
 		} else {
 			pairs.push_back(std::make_pair(p1, p2));
 		}
-		i++;
-		// if (i == 2)
-		// 	exit(1);
 	}
 
-	std::cout << "hey" << std::endl;
 	for (this->_i_pairs_l = pairs.begin(); this->_i_pairs_l != pairs.end(); ++this->_i_pairs_l) {
 		if (this->_i_pairs_l->second != 0) {
 			new_lst.push_back(this->_i_pairs_l->first);
