@@ -99,32 +99,45 @@ bool checkSortList(const std::list<int>& lst) {
 */
 void	PmergeMe::sort(void)
 {
-	// getPairsVector(this->_data_v);
-	// std::reverse(this->_main_chain_v.begin(), this->_main_chain_v.end());
+	clock_t start;
+	clock_t	end;
+	std::cout << "Before:  ";
+	AfficherElements(this->_data_v);
+	start = clock();
+	getPairsVector(this->_data_v);
+	std::reverse(this->_main_chain_v.begin(), this->_main_chain_v.end());
+	std::cout << "After:  ";
+	AfficherElements(this->_main_chain_v);
+	end = clock();
+	std::cout << "Time to process a range of    " << this->_data_l.size() << " elements with std::vector : " << (end - start) / 1000 << "us" << std::endl;
+	start = clock();
 	getPairsList(this->_data_l);
 	std::reverse(this->_main_chain_l.begin(), this->_main_chain_l.end());
-	if (checkSortList(this->_main_chain_l)) {
-        std::cout << "OK" << std::endl;
-		std::cout << "main chain size " << this->_main_chain_l.size() << std::endl;
-    } else {
-        std::cout << "KO" << std::endl;
-    }
-	if (this->_main_chain_l.size() != this->_data_l.size())
-	{
-		if (this->_main_chain_l.size() < this->_data_l.size())
-		{
-			std::cout << "Absents: ";
-			AfficherElementsDifferents(this->_main_chain_l, this->_data_l);
-		}
-		else
-		{
-			std::cout << "Duplicates: ";
-			TrouverDoublons(this->_main_chain_l);
-			// AfficherElements(this->_data_l);
-			// std::cout << "main chain: ";
-			// AfficherElements(this->_main_chain_l);
-		}
-	}
+	end = clock();
+  	std::cout << "Time to process a range of    " << this->_data_l.size() << " elements with std::list : " << (end - start) / 1000 << "us" << std::endl;
+	// if (checkSortList(this->_main_chain_l)) {
+    //     std::cout << "OK" << std::endl;
+	// 	std::cout << "main chain size " << this->_main_chain_l.size() << std::endl;
+    // } else {
+    //     std::cout << "KO" << std::endl;
+    // }
+	// if (this->_main_chain_l.size() != this->_data_l.size())
+	// {
+	// 	if (this->_main_chain_l.size() < this->_data_l.size())
+	// 	{
+	// 		std::cout << "Absents: ";
+	// 		AfficherElementsDifferents(this->_main_chain_l, this->_data_l);
+	// 		AfficherElements(this->_data_l);
+	// 	}
+	// 	else
+	// 	{
+	// 		std::cout << "Duplicates: ";
+	// 		TrouverDoublons(this->_main_chain_l);
+	// 		AfficherElements(this->_data_l);
+	// 		// std::cout << "main chain: ";
+	// 		// AfficherElements(this->_main_chain_l);
+	// 	}
+	// }
 }
 
 void	PmergeMe::getPairsVector(std::vector<int> v)
@@ -143,36 +156,39 @@ void	PmergeMe::getPairsVector(std::vector<int> v)
 			pairs.push_back(std::make_pair(p1, p2));
 		}
     }
+	
 	for(this->_i_pairs_v = pairs.begin(); this->_i_pairs_v != pairs.end(); this->_i_pairs_v++)
 	{
-		if (this->_i_pairs_v->second != 0)
-		{	
+		if (this->_i_pairs_v->second != 0)	
 			new_vec.push_back(this->_i_pairs_v->first);
-		}
 		else
-		{
 			this->_pending_v.push_back(this->_i_pairs_v->first);
-		}
 	}
-	if (((this->_data_v.size() % 2) == 0) && pairs.size() == 1)
+	
+	if (pairs.size() == 2)
 	{
 		this->_i_pairs_v = pairs.begin();
 		this->_main_chain_v.push_back(this->_i_pairs_v->first);
 		if (this->_i_pairs_v->second != 0)
 			this->_main_chain_v.push_back(this->_i_pairs_v->second);
+		this->_i_pairs_v++;
+		if (this->_i_pairs_v->second != 0)
+		{
+			addToMainChainList(this->_i_pairs_v->first);
+			addToMainChainList(this->_i_pairs_v->second);
+		}
+		else if (this->_data_v.size() == 3)
+			addToMainChainList(this->_i_pairs_v->first);
 		return;
 	}
-	else if (!((this->_data_v.size() % 2) == 0) && pairs.size() == 2)
+	else if (pairs.size() == 1)
 	{
 		this->_i_pairs_v = pairs.begin();
 		this->_main_chain_v.push_back(this->_i_pairs_v->first);
 		this->_main_chain_v.push_back(this->_i_pairs_v->second);
-		// if (this->_pending_v.size() > 0)
-		// {
-		// 	addToMainChainVector(this->_pending_v.front());
-		// }
 		return;
 	}
+
 	getPairsVector(new_vec);
 	for(std::vector<int>::iterator i = this->_pending_v.begin(); i != this->_pending_v.end(); i++)
 	{
@@ -291,69 +307,38 @@ void 	PmergeMe::getPairsList(std::list<int> lst) {
 	}
 
 	for (this->_i_pairs_l = pairs.begin(); this->_i_pairs_l != pairs.end(); ++this->_i_pairs_l) {
-		// std::cout << "(" << this->_i_pairs_l->first << "-"  << this->_i_pairs_l->second << ") ";
-		// if (this->_i_pairs_l->first == 296)
-		// {
-		// 	std::cout << "FIRST ";
-		// }
-		// else if (this->_i_pairs_l->second == 296)
-		// {
-		// 	std::cout << "SECOND ";
-		// }
 		if (this->_i_pairs_l->second != 0) {
 			new_lst.push_back(this->_i_pairs_l->first);
 		} else {
-			// std::cout << "HEREEEEE: " << this->_i_pairs_l->first << std::endl;
 			this->_pending_l.push_back(this->_i_pairs_l->first);
 		}
 	}
 
-	// std::cout << std::endl;
-
-	if (((this->_data_v.size() % 2) == 0) && pairs.size() == 1)
+	if (pairs.size() == 2)
 	{
 		this->_i_pairs_l = pairs.begin();
 		this->_main_chain_l.push_back(this->_i_pairs_l->first);
 		if (this->_i_pairs_l->second != 0)
 			this->_main_chain_l.push_back(this->_i_pairs_l->second);
-		// std::cout << "antes de salir de la recursion in the pending list: ";
-		// for (std::list<int>::iterator it = this->_pending_l.begin(); it != this->_pending_l.end(); ++it) {
-		// 	std::cout << *it << " ";
-		// }
-		// std::cout << std::endl;
-		return;
-	}
-	// Este else if es nuevo!
-	else if (((this->_data_v.size() % 2) == 0) && pairs.size() == 2)
-	{
-		// std::cout << "pasa estoooooo" << std::endl;
-		this->_i_pairs_l = pairs.begin();
-		this->_main_chain_l.push_back(this->_i_pairs_l->first);
+		this->_i_pairs_l++;
 		if (this->_i_pairs_l->second != 0)
-			this->_main_chain_l.push_back(this->_i_pairs_l->second);
+		{
+			addToMainChainList(this->_i_pairs_l->first);
+			addToMainChainList(this->_i_pairs_l->second);
+		}
+		else if (this->_data_v.size() == 3)
+			addToMainChainList(this->_i_pairs_l->first);
 		return;
 	}
-	else if (!((this->_data_v.size() % 2) == 0) && pairs.size() == 2) {
+	else if (pairs.size() == 1)
+	{
 		this->_i_pairs_l = pairs.begin();
 		this->_main_chain_l.push_back(this->_i_pairs_l->first);
 		this->_main_chain_l.push_back(this->_i_pairs_l->second);
-		if (this->_pending_l.size() > 0)
-		{
-			this->_i_pairs_l++;
-			if (this->_i_pairs_l->second != 0)
-			{
-				this->_pending_l.push_back(this->_i_pairs_l->first);
-				this->_pending_l.push_back(this->_i_pairs_l->second);
-			}
-		}
 		return;
 	}
-
 	getPairsList(new_lst);
-
 	for (std::list<int>::iterator it = this->_pending_l.begin(); it != this->_pending_l.end(); ++it) {
-		if (*it == 296)
-			std::cout << "adding for pending list" << std::endl;
 		addToMainChainList(*it);
 	}
 	this->_pending_l.clear();
