@@ -106,7 +106,7 @@ void	PmergeMe::sort(void)
 	start = clock();
 	getPairsVector(this->_data_v);
 	std::reverse(this->_main_chain_v.begin(), this->_main_chain_v.end());
-	std::cout << "After:  ";
+	std::cout << "After:  " ;
 	AfficherElements(this->_main_chain_v);
 	end = clock();
 	std::cout << "Time to process a range of    " << this->_data_l.size() << " elements with std::vector : " << (end - start) / 1000 << "us" << std::endl;
