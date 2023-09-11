@@ -121,6 +121,7 @@ void	PmergeMe::sort(void)
 			std::cout << "Duplicates: ";
 			TrouverDoublons(this->_main_chain_l);
 		}
+		AfficherElements(this->_data_l);
 	}
 }
 
@@ -288,12 +289,23 @@ void 	PmergeMe::getPairsList(std::list<int> lst) {
 	}
 
 	for (this->_i_pairs_l = pairs.begin(); this->_i_pairs_l != pairs.end(); ++this->_i_pairs_l) {
+		std::cout << "(" << this->_i_pairs_l->first << "-"  << this->_i_pairs_l->second << ") ";
+		if (this->_i_pairs_l->first == 460 || this->_i_pairs_l->first == 475)
+		{
+			std::cout << "FIRST ";
+		}
+		else if (this->_i_pairs_l->second == 460 || this->_i_pairs_l->second == 475)
+		{
+			std::cout << "SECOND ";
+		}
 		if (this->_i_pairs_l->second != 0) {
 			new_lst.push_back(this->_i_pairs_l->first);
 		} else {
 			this->_pending_l.push_back(this->_i_pairs_l->first);
 		}
 	}
+
+	std::cout << std::endl;
 
 	if (((this->_data_v.size() % 2) == 0) && pairs.size() == 1) {
 		this->_i_pairs_l = pairs.begin();
@@ -305,6 +317,12 @@ void 	PmergeMe::getPairsList(std::list<int> lst) {
 		this->_i_pairs_l = pairs.begin();
 		this->_main_chain_l.push_back(this->_i_pairs_l->first);
 		this->_main_chain_l.push_back(this->_i_pairs_l->second);
+		
+		// std::cout << "pending: :";
+		// for (std::list<int>::iterator it = this->_pending_l.begin(); it != this->_pending_l.end(); ++it) {
+		// 	std::cout << *it << " ";
+		// }
+		// std::cout << std::endl;
 		return;
 	}
 

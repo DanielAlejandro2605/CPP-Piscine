@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 16:04:57 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/09/11 10:57:24 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/09/11 11:08:54 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,14 @@ void AfficherElementsDifferents(const Container& container1, const Container& co
         }
     }
     
+    std::cout << std::endl;
+}
+
+template <typename Container>
+void AfficherElements(const Container& container) {
+    for (typename Container::const_iterator it = container.begin(); it != container.end(); ++it) {
+        std::cout << *it << " ";
+    }
     std::cout << std::endl;
 }
 
