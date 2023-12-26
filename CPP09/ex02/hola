@@ -1,5 +1,0 @@
-Hay :25
-Before:  92 99 32 68 7 93 27 85 33 60 55 78 11 61 65 94 41 40 47 5 89 50 13 69 73 
-After:  5 7 11 13 27 32 33 40 41 47 50 55 60 61 65 68 69 73 78 85 89 92 93 94 99 
-Time to process a range of    25 elements with std::vector : 0us
-Time to process a range of    25 elements with std::list : 0us

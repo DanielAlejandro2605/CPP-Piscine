@@ -4,9 +4,8 @@
 ** ------------------------------- CONSTRUCTOR --------------------------------
 */
 
-PmergeMe::PmergeMe(char **arg) : _i(0)
+PmergeMe::PmergeMe(char **arg)
 {
-	std::pair<std::set<int>::iterator,bool> ret;
 	std::string	set;
 	int			i;
 
@@ -21,6 +20,8 @@ PmergeMe::PmergeMe(char **arg) : _i(0)
 		this->_data_l.push_back(std::atoi(arg[i]));
 		i++;
 	}
+	if (this->_data_v.size() == 1)
+		throw PmergeMe::MissingError();
 	for (this->_i = this->_data_v.begin(); this->_i != this->_data_v.end(); this->_i++)
 	{
 		for (this->_j = this->_i + 1; this->_j != this->_data_v.end(); this->_j++)
@@ -29,13 +30,12 @@ PmergeMe::PmergeMe(char **arg) : _i(0)
 				throw PmergeMe::DuplicatesError();
 		}
 	}
-	this->_data_v_length = this->_data_v.size();
-	std::cout << "Hay :" << this->_data_v_length << std::endl;
 }
 
-// PmergeMe::PmergeMe( const PmergeMe & src )
-// {
-// }
+PmergeMe::PmergeMe(const PmergeMe & src)
+{
+	(void)src;
+}
 
 
 /*
@@ -51,101 +51,66 @@ PmergeMe::~PmergeMe()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-// PmergeMe &				PmergeMe::operator=( PmergeMe const & rhs )
-// {
-// 	//if ( this != &rhs )
-// 	//{
-// 		//this->_value = rhs.getValue();
-// 	//}
-// 	return *this;
-// }
-
-// std::ostream &			operator<<( std::ostream & o, PmergeMe const & i )
-// {
-// 	//o << "Value = " << i.getValue();
-// 	return o;
-// }
-
-bool checkSortVector(const std::vector<int>& vec) {
-    for (size_t i = 1; i < vec.size(); i++) {
-        if (vec[i] < vec[i - 1]) {
-            // El vector no está ordenado de menor a mayor en el índice i.
-            std::cout << "El vector no está ordenado en el índice " << i << "." << std::endl;
-            return false;
-        }
-    }
-    return true; // El vector está ordenado correctamente.
+PmergeMe &				PmergeMe::operator=( PmergeMe const & rhs )
+{
+	(void)rhs;
+	return (*this);
 }
 
-bool checkSortList(const std::list<int>& lst) {
-    std::list<int>::const_iterator prev_it = lst.begin();
-    std::list<int>::const_iterator it = prev_it;
-    ++it;
 
-    while (it != lst.end()) {
-        if (*it < *prev_it) {
-            // La lista no está ordenada en el punto actual.
-            std::cout << "La lista no está ordenada en este punto." << std::endl;
-            return false;
-        }
-        ++it;
-        ++prev_it;
-    }
-
-    return true; // La lista está ordenada correctamente.
-}
 /*
 ** --------------------------------- METHODS ----------------------------------
 */
+
 void	PmergeMe::sort(void)
 {
-	clock_t start;
-	clock_t	end;
-	std::cout << "Before:  ";
-	AfficherElements(this->_data_v);
-	start = clock();
-	getPairsVector(this->_data_v);
-	std::reverse(this->_main_chain_v.begin(), this->_main_chain_v.end());
-	std::cout << "After:  " ;
-	AfficherElements(this->_main_chain_v);
-	end = clock();
-	std::cout << "Time to process a range of    " << this->_data_l.size() << " elements with std::vector : " << (end - start) / 1000 << "us" << std::endl;
-	start = clock();
+	sortVector();
+	sortList();
+	// checkPmergeMe();
+}
+
+void	PmergeMe::sortList(void)
+{
+	this->_start = clock();
 	getPairsList(this->_data_l);
 	std::reverse(this->_main_chain_l.begin(), this->_main_chain_l.end());
-	end = clock();
-  	std::cout << "Time to process a range of    " << this->_data_l.size() << " elements with std::list : " << (end - start) / 1000 << "us" << std::endl;
-	// if (checkSortList(this->_main_chain_l)) {
-    //     std::cout << "OK" << std::endl;
-	// 	std::cout << "main chain size " << this->_main_chain_l.size() << std::endl;
-    // } else {
-    //     std::cout << "KO" << std::endl;
-    // }
-	// if (this->_main_chain_l.size() != this->_data_l.size())
-	// {
-	// 	if (this->_main_chain_l.size() < this->_data_l.size())
-	// 	{
-	// 		std::cout << "Absents: ";
-	// 		AfficherElementsDifferents(this->_main_chain_l, this->_data_l);
-	// 		AfficherElements(this->_data_l);
-	// 	}
-	// 	else
-	// 	{
-	// 		std::cout << "Duplicates: ";
-	// 		TrouverDoublons(this->_main_chain_l);
-	// 		AfficherElements(this->_data_l);
-	// 		// std::cout << "main chain: ";
-	// 		// AfficherElements(this->_main_chain_l);
-	// 	}
-	// }
+	this->_end = clock();
+  	std::cout << "Time to process a range of    " << this->_data_l.size() << " elements with std::list : " << std::fixed << (static_cast<double>(this->_end - this->_start)/CLOCKS_PER_SEC) * 100000 << " us." << std::endl;
+}
+
+void	PmergeMe::sortVector(void)
+{
+	std::cout << "Before: ";
+	printContainerElements(this->_data_v);
+	this->_start = clock();
+	getPairsVector(this->_data_v);
+	std::reverse(this->_main_chain_v.begin(), this->_main_chain_v.end());
+	this->_end = clock();
+	std::cout << "After: ";
+	printContainerElements(this->_main_chain_v);
+  	std::cout << "Time to process a range of    " << this->_data_v.size() << " elements with std::vector : " << std::fixed << (static_cast<double>(this->_end - this->_start)/CLOCKS_PER_SEC) * 100000 << " us." << std::endl;
+}
+
+void	PmergeMe::checkPmergeMe(void)
+{
+	if (checkContainerSorted(this->_main_chain_v) && checkContainerSorted(this->_main_chain_l)
+		&& (this->_main_chain_v.size() == this->_data_v.size())
+		&& (this->_main_chain_l.size() == this->_data_l.size()))
+	{
+		std::cout << "OK" << std::endl;
+	}
+	else
+	{
+		std::cout << "KO" << std::endl;
+	}
 }
 
 void	PmergeMe::getPairsVector(std::vector<int> v)
 {
 	std::vector<int>							new_vec;
 	std::vector<std::pair<int, int> > 			pairs;
-	int p1;
-	int p2;
+	int											p1;
+	int											p2;
 
 	for (size_t i = 0; i < v.size(); i += 2) {
 		p1 = v[i];
@@ -174,8 +139,8 @@ void	PmergeMe::getPairsVector(std::vector<int> v)
 		this->_i_pairs_v++;
 		if (this->_i_pairs_v->second != 0)
 		{
-			addToMainChainList(this->_i_pairs_v->first);
-			addToMainChainList(this->_i_pairs_v->second);
+			addToMainChainVector(this->_i_pairs_v->first);
+			addToMainChainVector(this->_i_pairs_v->second);
 		}
 		else if (this->_data_v.size() == 3)
 			addToMainChainList(this->_i_pairs_v->first);
@@ -279,8 +244,8 @@ void 	PmergeMe::getPairsList(std::list<int> lst) {
 	std::list<int> 					new_lst;
 	std::list<int>::iterator 		it;
 	std::list<std::pair<int, int> > pairs;
-	int p1;
-	int p2;
+	int 							p1;
+	int 							p2;
 
 	it = lst.begin();
 	while (it != lst.end())
@@ -291,7 +256,7 @@ void 	PmergeMe::getPairsList(std::list<int> lst) {
 		{
 			p2 = 0;
 			if (p1 < p2) {
-			pairs.push_back(std::make_pair(p2, p1));
+				pairs.push_back(std::make_pair(p2, p1));
 			} else {
 				pairs.push_back(std::make_pair(p1, p2));
 			}
@@ -306,7 +271,7 @@ void 	PmergeMe::getPairsList(std::list<int> lst) {
 		}
 	}
 
-	for (this->_i_pairs_l = pairs.begin(); this->_i_pairs_l != pairs.end(); ++this->_i_pairs_l) {
+	for (this->_i_pairs_l = pairs.begin(); this->_i_pairs_l != pairs.end(); this->_i_pairs_l++) {
 		if (this->_i_pairs_l->second != 0) {
 			new_lst.push_back(this->_i_pairs_l->first);
 		} else {
@@ -326,7 +291,7 @@ void 	PmergeMe::getPairsList(std::list<int> lst) {
 			addToMainChainList(this->_i_pairs_l->first);
 			addToMainChainList(this->_i_pairs_l->second);
 		}
-		else if (this->_data_v.size() == 3)
+		else if (this->_data_l.size() == 3)
 			addToMainChainList(this->_i_pairs_l->first);
 		return;
 	}
@@ -337,12 +302,13 @@ void 	PmergeMe::getPairsList(std::list<int> lst) {
 		this->_main_chain_l.push_back(this->_i_pairs_l->second);
 		return;
 	}
+
 	getPairsList(new_lst);
-	for (std::list<int>::iterator it = this->_pending_l.begin(); it != this->_pending_l.end(); ++it) {
+	for (std::list<int>::iterator it = this->_pending_l.begin(); it != this->_pending_l.end(); it++) {
 		addToMainChainList(*it);
 	}
 	this->_pending_l.clear();
-	for (this->_i_pairs_l = pairs.begin(); this->_i_pairs_l != pairs.end(); ++this->_i_pairs_l) {
+	for (this->_i_pairs_l = pairs.begin(); this->_i_pairs_l != pairs.end(); this->_i_pairs_l++) {
 		addToMainChainList(this->_i_pairs_l->second);
 	}
 }
@@ -353,7 +319,6 @@ void PmergeMe::addToMainChainList(int n) {
 
 	if (n == 0)
 		return;
-	
 	if ((this->_main_chain_l.size() % 2) == 0) {
 		insert_it = this->_main_chain_l.begin();
 		std::advance(insert_it, this->_main_chain_l.size() / 2);
@@ -417,6 +382,10 @@ void PmergeMe::addToMainChainList(int n) {
 
 const char* PmergeMe::Error::what() const throw() {
     return ("Error: invalid character.");
+}
+
+const char* PmergeMe::MissingError::what() const throw() {
+    return ("Error: only one number is not a sequence.");
 }
 
 const char* PmergeMe::DuplicatesError::what() const throw() {

@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/11 17:37:15 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/22 14:22:00 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:32:02 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ BitcoinExchange::BitcoinExchange()
 	loadDataBase();
 }
 
-// BitcoinExchange::BitcoinExchange( const BitcoinExchange & src )
-// {
-// }
-
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &src)
+{
+	(void)src;
+}
 
 /*
 ** -------------------------------- DESTRUCTOR --------------------------------
@@ -42,21 +42,11 @@ BitcoinExchange::~BitcoinExchange()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-// BitcoinExchange &				BitcoinExchange::operator=( BitcoinExchange const & rhs )
-// {
-// 	//if ( this != &rhs )
-// 	//{
-// 		//this->_value = rhs.getValue();
-// 	//}
-// 	return *this;
-// }
-
-// std::ostream &			operator<<( std::ostream & o, BitcoinExchange const & i )
-// {
-// 	//o << "Value = " << i.getValue();
-// 	return o;
-// }
-
+BitcoinExchange &				BitcoinExchange::operator=(BitcoinExchange const &rhs)
+{
+	(void)rhs;
+	return (*this);
+}
 
 /*
 ** --------------------------------- METHODS ----------------------------------
@@ -262,4 +252,5 @@ void BitcoinExchange::printMap(const std::map<std::string, float>& m) {
         std::cout << "Clave: " << it->first << ", Valor: " << it->second << std::endl;
     }
 }
+
 /* ************************************************************************** */

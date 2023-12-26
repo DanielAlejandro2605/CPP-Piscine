@@ -6,7 +6,7 @@
 /*   By: dnieto-c <dnieto-c@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/21 19:00:57 by dnieto-c          #+#    #+#             */
-/*   Updated: 2023/08/28 19:24:30 by dnieto-c         ###   ########.fr       */
+/*   Updated: 2023/09/13 17:27:09 by dnieto-c         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@ RNP::RNP()
 {
 }
 
-// RNP::RNP(const RNP &src)
-// {
-// }
+RNP::RNP(const RNP &src)
+{
+	(void)src;
+}
 
 
 /*
@@ -38,21 +39,11 @@ RNP::~RNP()
 ** --------------------------------- OVERLOAD ---------------------------------
 */
 
-// RNP &				RNP::operator=( RNP const & rhs )
-// {
-// 	//if ( this != &rhs )
-// 	//{
-// 		//this->_value = rhs.getValue();
-// 	//}
-// 	return *this;
-// }
-
-// std::ostream &			operator<<( std::ostream & o, RNP const & i )
-// {
-// 	//o << "Value = " << i.getValue();
-// 	return o;
-// }
-
+RNP &				RNP::operator=( RNP const & rhs )
+{
+	(void)rhs;
+	return *this;
+}
 
 /*
 ** --------------------------------- METHODS ----------------------------------
@@ -109,7 +100,6 @@ void	RNP::print(void)
     std::cout << std::endl;
 }
 
-// ./RNP "1 1 + 1 + 1"
 void	RNP::doOperation(char op, int val1, int val2)
 {
 	switch(op)
